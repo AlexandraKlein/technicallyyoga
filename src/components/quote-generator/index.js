@@ -12,6 +12,16 @@ class QuoteGenerator extends Component {
     this.generator = React.createRef();
   }
 
+  handleCustomChoice = () => {
+    this.setState({
+      custom: !this.state.custom,
+      customText: this.state.custom
+        ? 'Create Your Own'
+        : 'Go Back To Generator',
+      quote: this.state.custom ? this.state.quote : '',
+    });
+  };
+
   state = {
     quote: 'Click below and I\'ll generate a quote for you.',
     numWords: null,
@@ -22,15 +32,24 @@ class QuoteGenerator extends Component {
   };
 
   render() {
-    const { image, quote, customText } = this.state;
+    const { image, quote, custom, customText } = this.state;
 
     const Buttons = () => {
       return (
         <ButtonContainer>
 
-          <button>Generate Quote</button>
-          <p>or</p>
-          <button>{customText}</button>
+          {!custom && (
+            <>
+              <Button>
+                Generate Quote
+              </Button>
+              <p>or</p>
+            </>
+          )}
+          <button onClick={this.handleCustomChoice}>
+            {custom ? <span>&larr; &nbsp;</span> : ''}
+            {customText}
+          </button>
           <ButtonsRow>
             <ButtonSecondary>
               &darr; &nbsp; Save Quote As Image
@@ -47,28 +66,35 @@ class QuoteGenerator extends Component {
     return (
       <Container>
         <div>
-          {/* <div>
+
           <Generator ref={this.generator}>
-            <CustomInputs>
-              <ButtonSecondary>Change Background</ButtonSecondary>
-            </CustomInputs>
-          </Generator>
-        </div>*/}
 
-          <QuoteContainer>
+            {custom && (
+              <CustomInputs>
+                <ButtonSecondary>Change Background</ButtonSecondary>
+                <input
+                  type="text"
+                  maxLength={200}
+                  placeholder="Write your own quote here."
+                />
+              </CustomInputs>
+            )}
 
-            <QuoteWrap>
-              <BgImage src={image}/>
-              <h3>
-                <QuoteBefore>&ldquo;</QuoteBefore>
+            <QuoteContainer>
+
+              <QuoteWrap>
+                <BgImage src={image}/>
+                <h3>
+                  <QuoteBefore>&ldquo;</QuoteBefore>
                   {quote}
-                <QuoteAfter>&rdquo;</QuoteAfter>
-              </h3>
-            </QuoteWrap>
+                  <QuoteAfter>&rdquo;</QuoteAfter>
+                </h3>
+              </QuoteWrap>
 
-          </QuoteContainer>
+            </QuoteContainer>
 
-          <Buttons />
+            <Buttons />
+          </Generator>
 
         </div>
       </Container>
@@ -81,7 +107,6 @@ export default QuoteGenerator;
 const Container = styled.div`
   background-color: ${theme.lightPink};
   padding: 0 20px 60px;
-  font-family: 'Alegreya Bold', serif;
   
   ${bp.desktop`
     min-height: calc(100vh - 120px);
@@ -289,8 +314,8 @@ const ButtonSecondary = styled(Button)`
 
 const ButtonContainer = styled.div`
   position: relative;
-  opacity: 0;
-  animation: ${fadeIn} .5s ease-out 2.25s forwards;
+  // opacity: 0;
+  // animation: ${fadeIn} .5s ease-out 2.25s forwards;
   z-index: 2;
 
   p {

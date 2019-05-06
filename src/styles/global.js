@@ -103,7 +103,7 @@ export const GlobalStyle = createGlobalStyle`
       border: 0;
       border-bottom: 5px solid ${theme.darkBlue};
       background-color: $white !important;
-      color: $dark-blue;
+      color: ${theme.darkBlue};
       font-size: 18px;
       padding: .75rem 1rem;
       border-radius: 0;

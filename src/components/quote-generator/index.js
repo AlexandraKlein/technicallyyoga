@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import styled from 'styled-components';
+import Text from 'markov-chains-text';
+import { yogaQuotes } from '../../quotes.js';
 import { fadeIn, textFadeIn } from '../../styles/global';
 import { bp, bpm, theme } from '../../styles/theme';
 
@@ -20,6 +22,50 @@ class QuoteGenerator extends Component {
         : 'Go Back To Generator',
       quote: this.state.custom ? this.state.quote : '',
     });
+
+    if (this.state.custom) {
+      this.handleQuoteGenerator();
+    }
+  };
+
+  handleQuoteGenerator = () => {
+    const fakeYogaQuote = new Text(yogaQuotes);
+    const quote = fakeYogaQuote.makeSentence();
+    const maxLength = 160;
+    const charIsOver = quote.length > maxLength;
+    const isString = typeof quote === 'string';
+    let trimmedQuote = quote.substr(0, maxLength);
+
+    trimmedQuote = trimmedQuote.substr(
+      0,
+      Math.min(trimmedQuote.length, trimmedQuote.lastIndexOf(' ')),
+    );
+
+    let quoteForState;
+
+    if (isString && charIsOver) {
+      quoteForState = trimmedQuote + '.';
+    } else if (isString) {
+      quoteForState = quote;
+    } else {
+      quoteForState = 'Try again';
+    }
+
+    this.setState(
+      { quote: '' },
+      () =>
+        this.setState({
+          quote: quoteForState.trim(),
+          numWords: trimmedQuote.split(' ').length,
+        })
+    );
+  };
+
+  wrapLines = str => {
+    let words = str.split(' ');
+    return words.map((val, index) => {
+      return <span key={index} className={`item-span-${index}`}>{val}&nbsp;</span>;
+    });
   };
 
   state = {
@@ -32,7 +78,12 @@ class QuoteGenerator extends Component {
   };
 
   render() {
-    const { image, quote, custom, customText } = this.state;
+    const {
+      image,
+      quote,
+      custom,
+      customText
+    } = this.state;
 
     const Buttons = () => {
       return (
@@ -40,15 +91,15 @@ class QuoteGenerator extends Component {
 
           {!custom && (
             <>
-              <Button>
+              <Button onClick={this.handleQuoteGenerator}>
                 Generate Quote
               </Button>
               <p>or</p>
             </>
           )}
           <button onClick={this.handleCustomChoice}>
-            {custom ? <span>&larr; &nbsp;</span> : ''}
-            {customText}
+            { custom ? <span>&larr; &nbsp;</span> : '' }
+            { customText }
           </button>
           <ButtonsRow>
             <ButtonSecondary>
@@ -86,7 +137,7 @@ class QuoteGenerator extends Component {
                 <BgImage src={image}/>
                 <h3>
                   <QuoteBefore>&ldquo;</QuoteBefore>
-                  {quote}
+                  {this.wrapLines(quote)}
                   <QuoteAfter>&rdquo;</QuoteAfter>
                 </h3>
               </QuoteWrap>
@@ -228,6 +279,8 @@ const QuoteWrap = styled(QuoteWrapShared)`
     span {
       display: inline-block;
       opacity: 0;
+      transform: translate(-10px, 0) skew(25deg);
+      animation: ${textFadeIn} 1s ease-out forwards;
     }
     
     b {
@@ -314,9 +367,8 @@ const ButtonSecondary = styled(Button)`
 
 const ButtonContainer = styled.div`
   position: relative;
-  // opacity: 0;
-  // animation: ${fadeIn} .5s ease-out 2.25s forwards;
-  z-index: 2;
+  opacity: 0;
+  animation: ${fadeIn} .5s ease-out .25s forwards;
 
   p {
     position: relative;

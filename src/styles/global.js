@@ -28,18 +28,18 @@ export const textFadeIn = keyframes`
   }
 `;
 
-/*function imageItemCSS() {
+function itemSpanCSS() {
   let styles = '';
 
-  for (let i = 0; i < 20; i += 1) {
+  for (let i = 0; i < 40; i += 1) {
     styles += `
-      .item-image-${i} {
-        animation-delay: ${.5 + i/15}s !important;
+      .item-span-${i} {
+        animation-delay: ${.5 + i/8}s !important;
       }
     `;
   }
   return css`${styles}`;
-}*/
+}
 
 export const GlobalStyle = createGlobalStyle`  
   @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400');
@@ -87,6 +87,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     ${fontStack};
+    ${itemSpanCSS()}
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;  

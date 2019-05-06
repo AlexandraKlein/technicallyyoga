@@ -2,13 +2,14 @@ import React, { PureComponent } from 'react';
 import styled, { keyframes } from 'styled-components';
 import { bp, bpm, theme } from '../../styles/theme';
 import { GlobalStyle } from '../../styles/global';
+import Main from '../../containers/main'
 // import Markov from 'components/markov';
 import Overlay from '../overlay';
 
 class Container extends PureComponent {
   constructor(props) {
     super(props);
-    this.webNet = React.createRef();
+    this.webWavesRef = React.createRef();
   }
 
   state = {
@@ -16,64 +17,51 @@ class Container extends PureComponent {
     mountOverlay: false,
   };
 
-  componentDidMount() {
+  handleWebWaves = () => {
     window.VANTA.WAVES({
-      el: this.webNet.current,
+      el: this.webWavesRef.current,
       color: 0x786174,
       shininess: 0.0,
       waveHeight: 7.5,
       waveSpeed: 1,
       zoom: 1.14,
     });
-    this.handleMountOverlay();
-  }
+  };
 
   handleMountOverlay = () => {
-    setTimeout(() => {
-      this.setState({
-        mountOverlay: true,
-      });
-    }, 1000);
+    this.setState({ mountOverlay: true });
   };
 
   handleOverlay = () => {
-    this.setState({
-      isOpen: !this.state.isOpen,
-    });
+    this.setState({ isOpen: !this.state.isOpen });
   };
+
+  componentDidMount() {
+   this.handleWebWaves();
+  }
+
+  componentDidUpdate() {
+    this.handleMountOverlay();
+  }
 
   render() {
     const { isOpen, mountOverlay } = this.state;
-
-    const overlayOpacity = mountOverlay ? 1 : 0;
 
     return (
       <Main>
         <GlobalStyle/>
         <div>
-          <CopyContainer ref={this.webNet}>
+          <CopyContainer ref={this.webWavesRef}>
             <Copy>
-              <h1>
-                Technically <span>Yoga</span>
-              </h1>
-              <p>
-                Technically Yoga is the spirit front end of three who love yoga,
-                tech, and Marina Del Rey. Click away and discover a quote that
-                makes your horoscope jealous. A Technically Yoga generated quote
-                is guaranteed to either awaken your soul, give cognitive unease,
-                brighten your Darshan or bring understanding to that mildly
-                depressed itch in the back of your head. This is where your
-                Karma and Meta Elements link to bring you a moment of ease. Or,
-                create your own quote and give Rumi a run for his shakti. You
-                can save a Technically Yoga quote and share with a friend.
-              </p>
+              <h1>= <span>Yoga</span></h1>
+              <p>{this.props.description}</p>
               <Button onClick={this.handleOverlay}>About Us</Button>
             </Copy>
           </CopyContainer>
           {/*<Markov title="Yoga Quote Me" />*/}
         </div>
 
-        <div style={{ opacity: overlayOpacity }}>
+        <div style={{ opacity: mountOverlay ? 1 : 0 }}>
           <Overlay close={this.handleOverlay} isOpen={isOpen} />
         </div>
       </Main>
@@ -89,15 +77,6 @@ const fadeIn = keyframes`
   to {
     opacity: 1;
   }
-`;
-
-const Main = styled.main`
-  position: relative;
-  font-size: 18px;
-  min-height: 100vh;
-  text-align: center;
-  background-color: ${theme.pink};
-  overflow: hidden;
 `;
 
 const CopyContainer = styled.div`

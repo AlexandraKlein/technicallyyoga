@@ -1,7 +1,7 @@
 import {createGlobalStyle, css, keyframes} from 'styled-components'
 import { theme, fontStack, bp } from './theme';
 
-/*const fadeIn = keyframes`
+export const fadeIn = keyframes`
   from {
     opacity: 0;
   }
@@ -9,7 +9,24 @@ import { theme, fontStack, bp } from './theme';
   to {
     opacity: 1;
   }
-`;*/
+`;
+
+export const textFadeIn = keyframes`
+  0% {
+    opacity: 0;
+    transform: translate(-10px, 0) skew(25deg);
+  }
+
+  65% {
+    opacity: 1;
+    transform: skew(0deg);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(0, 0);
+  }
+`;
 
 /*function imageItemCSS() {
   let styles = '';

@@ -3,7 +3,7 @@ import styled, { keyframes } from 'styled-components';
 import { bp, bpm, theme } from '../../styles/theme';
 import { GlobalStyle } from '../../styles/global';
 import Main from '../../containers/main'
-// import Markov from 'components/markov';
+import QuoteGenerator from '../../components/quote-generator';
 import Overlay from '../overlay';
 
 class Container extends PureComponent {
@@ -49,16 +49,16 @@ class Container extends PureComponent {
 
     return (
       <Main>
-        <GlobalStyle/>
+        <GlobalStyle />
         <div>
           <CopyContainer ref={this.webWavesRef}>
             <Copy>
-              <h1>= <span>Yoga</span></h1>
+              <h1>Technically <span>Yoga</span></h1>
               <p>{this.props.description}</p>
               <Button onClick={this.handleOverlay}>About Us</Button>
             </Copy>
           </CopyContainer>
-          {/*<Markov title="Yoga Quote Me" />*/}
+          <QuoteGenerator />
         </div>
 
         <div style={{ opacity: mountOverlay ? 1 : 0 }}>

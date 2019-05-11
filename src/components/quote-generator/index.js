@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import Text from 'markov-chains-text';
 import { yogaQuotes } from '../../quotes.js';
 import { fadeIn, textFadeIn } from '../../styles/global';
-import { bp, bpm, theme } from '../../styles/theme';
+import { bp, theme } from '../../styles/theme';
 
 class QuoteGenerator extends Component {
 
@@ -13,6 +13,15 @@ class QuoteGenerator extends Component {
     this.shareImgContainer = React.createRef();
     this.generator = React.createRef();
   }
+
+  state = {
+    quote: 'Click below and I will generate a quote for you.',
+    numWords: null,
+    image: 'https://technicallyyoga.com/images/bg-image234.jpg',
+    shareImage: null,
+    custom: false,
+    customText: 'Create Your Own',
+  };
 
   handleCustomChoice = () => {
     this.setState({
@@ -68,15 +77,6 @@ class QuoteGenerator extends Component {
     });
   };
 
-  state = {
-    quote: 'Click below and I\'ll generate a quote for you.',
-    numWords: null,
-    image: 'https://technicallyyoga.com/images/bg-image234.jpg',
-    shareImage: null,
-    custom: false,
-    customText: 'Create Your Own',
-  };
-
   render() {
     const {
       image,
@@ -97,6 +97,7 @@ class QuoteGenerator extends Component {
               <p>or</p>
             </>
           )}
+
           <button onClick={this.handleCustomChoice}>
             { custom ? <span>&larr; &nbsp;</span> : '' }
             { customText }
@@ -135,11 +136,17 @@ class QuoteGenerator extends Component {
 
               <QuoteWrap>
                 <BgImage src={image}/>
+
+                { quote &&
                 <h3>
                   <QuoteBefore>&ldquo;</QuoteBefore>
-                  {this.wrapLines(quote)}
+                  <span>
+                    { this.wrapLines(quote) }
+                  </span>
                   <QuoteAfter>&rdquo;</QuoteAfter>
                 </h3>
+                }
+
               </QuoteWrap>
 
             </QuoteContainer>
@@ -158,7 +165,7 @@ export default QuoteGenerator;
 const Container = styled.div`
   background-color: ${theme.lightPink};
   padding: 0 20px 60px;
-  
+
   ${bp.desktop`
     min-height: calc(100vh - 120px);
     width: 60%;
@@ -252,48 +259,48 @@ const QuoteWrap = styled(QuoteWrapShared)`
   position: relative;
   height: calc(100vw - 20px);
   width: calc(100vw - 20px);
-  
+
   ${bp.tablet`
     margin-top: calc((100vw - 700px)/2);
     height: 700px;
     width: 700px;
   `}
-  
+
   ${bp.desktop`
     margin-top: 0;
     height: 520px;
     width: 520px;
   `}
-  
+
   h3 {
     font-size: 6vw;
-    
+
     ${bp.tablet`
       font-size: 46px;
     `}
-    
+
     ${bp.desktop`
        font-size: 36px;
     `}
-    
+
     span {
       display: inline-block;
       opacity: 0;
       transform: translate(-10px, 0) skew(25deg);
       animation: ${textFadeIn} 1s ease-out forwards;
     }
-    
+
     b {
       opacity: 0;
       font-size: 75px;
       animation: ${fadeIn} .5s ease-out forwards .25s;
     }
-    
+
     p {
       font-size: 16px;
       bottom: 10px;
       right: 10px;
-      
+
       ${bp.tablet`
         font-size: 22px;
         bottom: 15px;
@@ -307,7 +314,7 @@ const QuoteCharacter = styled.b`
   opacity: 0;
   font-size: 75px;
   animation: ${fadeIn} .5s ease-out forwards .25s;
-  
+
   ${bp.tablet`
     font-size: 100px;
   `}
@@ -315,7 +322,7 @@ const QuoteCharacter = styled.b`
 
 const QuoteBefore = styled(QuoteCharacter)`
   top: -50px;
-  
+
   ${bp.tablet`
     top: -70px;
   `}
@@ -323,7 +330,7 @@ const QuoteBefore = styled(QuoteCharacter)`
 
 const QuoteAfter = styled(QuoteCharacter)`
   bottom: -100px;
-  
+
   ${bp.tablet`
     bottom: -140px;
   `}
@@ -354,7 +361,7 @@ const ButtonSecondary = styled(Button)`
   border: 0;
   border-top: 5px solid ${theme.pink};
   border-bottom: 5px solid ${theme.purple};
-  
+
   &:hover {
     border-top: 5px solid ${theme.purple};
     background-color: ${theme.purple};
@@ -373,7 +380,7 @@ const ButtonContainer = styled.div`
   p {
     position: relative;
     padding: 20px 0;
-    
+
     ${bp.tablet`
       padding: 0;
     `}
@@ -387,7 +394,7 @@ const ButtonContainer = styled.div`
       background-color: ${theme.darkBlue};
       top: 50%;
       transform: translateY(-50%);
-      
+
       ${bp.tablet`
         width: calc(50% - 50px);
       `}
@@ -395,7 +402,7 @@ const ButtonContainer = styled.div`
 
     &:before {
       left: 0;
-      
+
       ${bp.tablet`
         left: 20px;
       `}
@@ -403,7 +410,7 @@ const ButtonContainer = styled.div`
 
     &:after {
       right: 0;
-      
+
       ${bp.tablet`
         right: 20px;
       `}
@@ -415,7 +422,7 @@ const ButtonsRow = styled.div`
   display: flex;
   justify-content: center;
   margin-top: 45px;
-  
+
   button {
     ${bp.tablet`
       margin: 0 10px;

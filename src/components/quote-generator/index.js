@@ -1,9 +1,17 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+import styled from 'styled-components/macro';
+import domtoimage from 'dom-to-image';
+import { saveAs } from 'file-saver';
+import animateScrollTo from 'animated-scroll-to';
 import Text from 'markov-chains-text';
 import { yogaQuotes } from '../../quotes.js';
 import { fadeIn, textFadeIn } from '../../styles/global';
 import { bp, theme } from '../../styles/theme';
+
+const imageSettings = {
+  width: 900,
+  height: 900,
+};
 
 class QuoteGenerator extends Component {
 
@@ -21,6 +29,23 @@ class QuoteGenerator extends Component {
     shareImage: null,
     custom: false,
     customText: 'Create Your Own',
+  };
+
+  handleShareImage = () => {
+    const createImage = () => {
+      domtoimage.toJpeg(this.quoteImg.current, imageSettings).then(dataUrl => {
+        this.setState({
+          shareImage: dataUrl,
+        });
+      });
+    };
+
+    createImage();
+
+    setTimeout(() => {
+      createImage();
+      animateScrollTo(this.shareImgContainer.current);
+    }, 750);
   };
 
   handleCustomChoice = () => {
@@ -82,8 +107,27 @@ class QuoteGenerator extends Component {
       image,
       quote,
       custom,
-      customText
+      customText,
+      shareImage
     } = this.state;
+
+    console.log(this.state);
+
+    const QuoteClone = () => {
+      return (
+        <QuoteContainerClone>
+          <QuoteWrapClone ref={this.quoteImg}>
+            <BgImage src={image}/>
+            <h3>
+              <QuoteBefore style={{top: '-120px'}}>&ldquo;</QuoteBefore>
+              {quote}
+              <QuoteAfter style={{bottom: '-240px'}}>&rdquo;</QuoteAfter>
+            </h3>
+            <p>@technicallyyoga</p>
+          </QuoteWrapClone>
+        </QuoteContainerClone>
+      )
+    };
 
     const Buttons = () => {
       return (
@@ -106,7 +150,10 @@ class QuoteGenerator extends Component {
             <ButtonSecondary>
               &darr; &nbsp; Save Quote As Image
             </ButtonSecondary>
-            <ButtonSecondary>
+            <ButtonSecondary
+              onClick={this.handleShareImage}
+              disabled={quote.length < 1}
+            >
               Create Share Image
             </ButtonSecondary>
           </ButtonsRow>
@@ -146,13 +193,31 @@ class QuoteGenerator extends Component {
                   <QuoteAfter>&rdquo;</QuoteAfter>
                 </h3>
                 }
-
+                <p>@technicallyyoga</p>
               </QuoteWrap>
 
             </QuoteContainer>
+            <QuoteClone />
 
             <Buttons />
           </Generator>
+
+          <div ref={this.shareImgContainer}>
+            {shareImage && (
+              <ShareImageContainer>
+                <img src={shareImage} alt={quote} />
+
+                <button
+                  style={{marginTop: '15px'}}
+                  className={'mobile-only'}
+                  onClick={this.handleSaveImage}
+                >
+                  Save Quote As Image
+                </button>
+              </ShareImageContainer>
+            )}
+          </div>
+
 
         </div>
       </Container>
@@ -295,8 +360,9 @@ const QuoteWrap = styled(QuoteWrapShared)`
       font-size: 75px;
       animation: ${fadeIn} .5s ease-out forwards .25s;
     }
-
-    p {
+  }
+  
+   p {
       font-size: 16px;
       bottom: 10px;
       right: 10px;
@@ -307,6 +373,39 @@ const QuoteWrap = styled(QuoteWrapShared)`
         right: 15px;
       `}
     }
+`;
+
+const QuoteContainerClone = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const QuoteWrapClone = styled(QuoteWrapShared)`
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 900px;
+  width: 900px;
+  z-index: -1;
+
+  h3 {
+    font-size: 62px;
+
+    b {
+      font-size: 180px;
+    }
+  }
+
+  p {
+    font-size: 42px;
+    bottom: 15px;
+    right: 15px;
+
+    ${bp.tablet`
+      font-size: 38px;
+      bottom: 15px;
+      right: 15px;
+    `}
   }
 `;
 
@@ -426,6 +525,22 @@ const ButtonsRow = styled.div`
   button {
     ${bp.tablet`
       margin: 0 10px;
+    `}
+  }
+`;
+
+const ShareImageContainer = styled.div`
+  margin: 60px 0 30px;
+  
+  img {
+    width: 100%;
+    
+    ${bp.tablet`
+      width: 700px;
+    `}
+    
+    ${bp.desktop`
+      width: 520px
     `}
   }
 `;

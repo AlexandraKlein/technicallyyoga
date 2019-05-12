@@ -1,5 +1,5 @@
 import {createGlobalStyle, css, keyframes} from 'styled-components'
-import { theme, fontStack, bp } from './theme';
+import { theme, fontStack, bp, bpm } from './theme';
 
 export const fadeIn = keyframes`
   from {
@@ -158,6 +158,16 @@ export const GlobalStyle = createGlobalStyle`
       line-height: .8;
       font-weight: 700;
       font-size: 3.75rem;
+    }
+    
+    .mobile-only {
+      ${bpm.tablet`
+        display: initial;
+      `}
+      
+      ${bp.tablet`
+        display: none;
+      `}
     }
   }
 `;

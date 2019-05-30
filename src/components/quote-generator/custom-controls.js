@@ -14,6 +14,8 @@ const CustomControls = ({type, maxLength, placeholder, handleBackgroundImages, h
   </CustomInputs>
 );
 
+export default CustomControls;
+
 const CustomInputs = styled.div`
   display: flex;
   flex-direction: column;
@@ -23,5 +25,3 @@ const CustomInputs = styled.div`
     margin: 30px 0;
   }
 `;
-
-export default CustomControls;

@@ -38,7 +38,7 @@ const ButtonGroup = ({custom, customText, quote, handleSaveImage, handleQuoteGen
   </ButtonContainer>
 );
 
-
+export default ButtonGroup;
 
 const ButtonContainer = styled.div`
   position: relative;
@@ -97,5 +97,3 @@ const ButtonsRow = styled.div`
     `}
   }
 `;
-
-export default ButtonGroup;

@@ -56,6 +56,8 @@ const Overlay = ({ close, isOpen }) => {
   );
 };
 
+export default Overlay;
+
 const padding = '12vw';
 
 const slideIn = keyframes`
@@ -179,5 +181,3 @@ const Close = styled.div`
     }
   }
 `;
-
-export default Overlay;

@@ -111,6 +111,8 @@ class QuoteGenerator extends PureComponent {
       quoteForState = 'Try again';
     }
 
+    this.handleBackgroundImages();
+
     this.setState(
       { quote: '' },
       () =>
@@ -247,7 +249,6 @@ const QuoteContainer = styled.div`
   margin: 0 0 20px;
 `;
 
-
 const QuoteWrap = styled(QuoteWrapShared)`
   margin-top: calc((100vw - 20px)/20);
   position: relative;
@@ -303,7 +304,6 @@ const QuoteWrap = styled(QuoteWrapShared)`
       `}
     }
 `;
-
 
 const ShareImageContainer = styled.div`
   margin: 60px 0 30px;

@@ -18,6 +18,8 @@ const QuoteClone = ({ quote, image, quoteImg }) =>(
   </QuoteContainerClone>
 );
 
+export default QuoteClone;
+
 const QuoteContainerClone = styled.div`
   display: flex;
   justify-content: center;
@@ -51,5 +53,3 @@ const QuoteWrapClone = styled(QuoteWrapShared)`
     `}
   }
 `;
-
-export default QuoteClone;

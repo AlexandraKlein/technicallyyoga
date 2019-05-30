@@ -1,6 +1,6 @@
 import React from 'react';
 import styled, { keyframes } from 'styled-components';
-import { bp, bpm, theme } from '../../styles/theme';
+import { bp, theme } from '../../styles/theme';
 
 const Overlay = ({ close, isOpen }) => {
   return (

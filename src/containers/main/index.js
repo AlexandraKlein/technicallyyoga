@@ -3,16 +3,14 @@ import styled from 'styled-components';
 import { theme } from '../../styles/theme';
 import { GlobalStyle } from '../../styles/global';
 
-const Main = props => {
+const Main = ({ children }) => (
+  <MainContainer>
+    <GlobalStyle/>
+    { children }
+  </MainContainer>
+);
 
-  return (
-    <MainContainer>
-      <GlobalStyle/>
-      { props.children }
-    </MainContainer>
-  )
-
-};
+export default Main;
 
 const MainContainer = styled.main`
   position: relative;
@@ -22,6 +20,3 @@ const MainContainer = styled.main`
   background-color: ${theme.pink};
   overflow: hidden;
 `;
-
-
-export default Main;

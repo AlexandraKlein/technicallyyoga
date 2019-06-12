@@ -28,20 +28,15 @@ class Container extends PureComponent {
     });
   };
 
-  handleMountOverlay = () => {
-    this.setState({ mountOverlay: true });
-  };
-
   handleOverlay = () => {
-    this.setState({ isOpen: !this.state.isOpen });
+    this.setState({
+      mountOverlay: true,
+      isOpen: !this.state.isOpen
+    });
   };
 
   componentDidMount() {
    this.handleWebWaves();
-  }
-
-  componentDidUpdate() {
-    this.handleMountOverlay();
   }
 
   render() {
@@ -61,9 +56,10 @@ class Container extends PureComponent {
           <QuoteGenerator />
         </div>
 
-        <div style={{ opacity: mountOverlay ? 1 : 0 }}>
+        { mountOverlay &&
           <Overlay close={this.handleOverlay} isOpen={isOpen} />
-        </div>
+        }
+
       </Main>
     );
   }

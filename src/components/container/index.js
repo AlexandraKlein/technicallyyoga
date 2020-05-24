@@ -1,10 +1,11 @@
-import React, { PureComponent } from 'react';
-import styled, { keyframes } from 'styled-components';
-import { bp, bpm, theme } from '../../styles/theme';
-import { GlobalStyle } from '../../styles/global';
-import Main from '../../containers/main'
-import QuoteGenerator from '../../components/quote-generator';
-import Overlay from '../overlay';
+import React, { PureComponent } from "react";
+import styled, { keyframes } from "styled-components";
+import ParticlesBg from "particles-bg";
+import { bp, bpm, theme } from "../../styles/theme";
+import { GlobalStyle } from "../../styles/global";
+import Main from "../../containers/main";
+import QuoteGenerator from "../../components/quote-generator";
+import Overlay from "../overlay";
 
 class Container extends PureComponent {
   constructor(props) {
@@ -17,27 +18,12 @@ class Container extends PureComponent {
     mountOverlay: false,
   };
 
-  handleWebWaves = () => {
-    window.VANTA.WAVES({
-      el: this.webWavesRef.current,
-      color: 0x786174,
-      shininess: 0.0,
-      waveHeight: 7.5,
-      waveSpeed: 1,
-      zoom: 1.14,
-    });
-  };
-
   handleOverlay = () => {
     this.setState({
       mountOverlay: true,
-      isOpen: !this.state.isOpen
+      isOpen: !this.state.isOpen,
     });
   };
-
-  componentDidMount() {
-   this.handleWebWaves();
-  }
 
   render() {
     const { isOpen, mountOverlay } = this.state;
@@ -46,9 +32,17 @@ class Container extends PureComponent {
       <Main>
         <GlobalStyle />
         <div>
-          <CopyContainer ref={this.webWavesRef}>
+          <CopyContainer>
+            <ParticlesBg
+              bg={true}
+              color={theme.darkPurple}
+              num={100}
+              type="cobweb"
+            />
             <Copy>
-              <h1>Technically <span>Yoga</span></h1>
+              <h1>
+                Technically <span>Yoga</span>
+              </h1>
               <p>{this.props.description}</p>
               <Button onClick={this.handleOverlay}>About Us</Button>
             </Copy>
@@ -56,10 +50,7 @@ class Container extends PureComponent {
           <QuoteGenerator />
         </div>
 
-        { mountOverlay &&
-          <Overlay close={this.handleOverlay} isOpen={isOpen} />
-        }
-
+        {mountOverlay && <Overlay close={this.handleOverlay} isOpen={isOpen} />}
       </Main>
     );
   }
@@ -79,22 +70,23 @@ const CopyContainer = styled.div`
   position: relative;
   text-align: center;
   z-index: 0;
-  
+
   ${bp.desktop`
     position: fixed;
     width: 40%;
+    height: 100%;
     float: left;
     z-index: 2;
   `}
-  
-   &:after {
-    content: '';
+
+  &:after {
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    opacity: .65;
+    opacity: 0.65;
     background-color: ${theme.pink};
   }
 `;
@@ -166,8 +158,8 @@ const Copy = styled.div`
 `;
 
 const Button = styled.button`
-  opacity:0;
-  animation: ${fadeIn} .75s ease-out 1.75s forwards;
+  opacity: 0;
+  animation: ${fadeIn} 0.75s ease-out 1.75s forwards;
 `;
 
 export default Container;

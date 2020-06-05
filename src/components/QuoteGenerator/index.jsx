@@ -36,18 +36,13 @@ class QuoteGenerator extends PureComponent {
   }
 
   handleShareImage = () => {
-    const createImage = () => {
-      domtoimage.toJpeg(this.quoteImg.current, imageSettings).then(dataUrl => {
-        this.setState({
-          shareImage: dataUrl,
-        });
+    domtoimage.toJpeg(this.quoteImg.current, imageSettings).then(dataUrl => {
+      this.setState({
+        shareImage: dataUrl,
       });
-    };
-
-    createImage();
+    });
 
     setTimeout(() => {
-      createImage();
       animateScrollTo(this.shareImgContainer.current);
     }, 750);
   };

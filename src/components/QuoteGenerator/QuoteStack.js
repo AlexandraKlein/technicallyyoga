@@ -74,7 +74,7 @@ export const BgImage = styled.img`
 const QuoteCharacter = styled.b`
   opacity: 0;
   font-size: 75px;
-  animation: ${fadeIn} 0.5s ease-out forwards 0.25s;
+  animation: ${fadeIn} 0.5s ease-out 0.25s forwards;
 
   ${bp.tablet`
     font-size: 100px;

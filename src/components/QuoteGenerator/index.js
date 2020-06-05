@@ -8,7 +8,7 @@ import Text from "markov-chains-text";
 import { yogaQuotes } from "../../quotes.js";
 import { QuoteWrap, BgImage, QuoteBefore, QuoteAfter } from "./QuoteStack";
 import ButtonGroup from "./ButtonGroup";
-import QuoteClone from "./QuoteCone";
+import QuoteClone from "./QuoteClone";
 import CustomControls from "./CustomControls";
 import { fadeIn, textFadeIn } from "../../styles/global";
 import { bp, theme } from "../../styles/theme";
@@ -74,10 +74,10 @@ class QuoteGenerator extends PureComponent {
 
   handleBackgroundImages = () => {
     const numImages = 243;
-    const getRandomNum = () => Math.floor(Math.random() * numImages);
+    const getRandomImage = () => Math.floor(Math.random() * numImages);
 
     this.setState({
-      image: `https://technicallyyoga.com/images/bg-image${getRandomNum()}.jpg`,
+      image: `https://technicallyyoga.com/images/bg-image${getRandomImage()}.jpg`,
     });
   };
 
@@ -132,53 +132,50 @@ class QuoteGenerator extends PureComponent {
 
     return (
       <Container>
-        <div>
-          <Generator ref={this.generator}>
-            {custom && (
-              <CustomControls
-                type="text"
-                maxLength={200}
-                placeholder="Write your own quote here."
-                handleBackgroundImages={this.handleBackgroundImages}
-                handleCreateCustomQuote={this.handleCreateCustomQuote}
-              />
-            )}
-
-            <QuoteContainer>
-              <QuoteWrapper>
-                <BgImage src={image} />
-
-                {quote && (
-                  <h3>
-                    <QuoteBefore>&ldquo;</QuoteBefore>
-                    {this.wrapWords(quote)}
-                    <QuoteAfter>&rdquo;</QuoteAfter>
-                  </h3>
-                )}
-                <p>@technicallyyoga</p>
-              </QuoteWrapper>
-            </QuoteContainer>
-
-            <QuoteClone quoteImg={this.quoteImg} image={image} quote={quote} />
-
-            <ButtonGroup
-              custom={custom}
-              customText={customText}
-              quote={quote}
-              handleQuoteGenerator={this.handleQuoteGenerator}
-              handleCustomChoice={this.handleCustomChoice}
-              handleSaveImage={this.handleSaveImage}
-              handleShareImage={this.handleShareImage}
+        <Generator ref={this.generator}>
+          {custom && (
+            <CustomControls
+              type="text"
+              maxLength={200}
+              placeholder="Write your own quote here."
+              handleBackgroundImages={this.handleBackgroundImages}
+              handleCreateCustomQuote={this.handleCreateCustomQuote}
             />
-          </Generator>
+          )}
 
-          <div ref={this.shareImgContainer}>
-            {shareImage && (
-              <ShareImageContainer>
-                <img src={shareImage} alt={quote} />
-              </ShareImageContainer>
-            )}
-          </div>
+          <QuoteContainer>
+            <QuoteWrapper>
+              <BgImage src={image} />
+              {quote && (
+                <h3>
+                  <QuoteBefore>&ldquo;</QuoteBefore>
+                  {this.wrapWords(quote)}
+                  <QuoteAfter>&rdquo;</QuoteAfter>
+                </h3>
+              )}
+              <p>@technicallyyoga</p>
+            </QuoteWrapper>
+          </QuoteContainer>
+
+          <QuoteClone quoteImg={this.quoteImg} image={image} quote={quote} />
+
+          <ButtonGroup
+            custom={custom}
+            customText={customText}
+            quote={quote}
+            handleQuoteGenerator={this.handleQuoteGenerator}
+            handleCustomChoice={this.handleCustomChoice}
+            handleSaveImage={this.handleSaveImage}
+            handleShareImage={this.handleShareImage}
+          />
+        </Generator>
+
+        <div ref={this.shareImgContainer}>
+          {shareImage && (
+            <ShareImageContainer>
+              <img src={shareImage} alt={quote} />
+            </ShareImageContainer>
+          )}
         </div>
       </Container>
     );
@@ -212,7 +209,7 @@ const Generator = styled.div`
 
 const QuoteContainer = styled.div`
   opacity: 0;
-  animation: ${fadeIn} 0.5s ease-out 2s forwards;
+  animation: ${fadeIn} 0.25s ease-out 0.5s forwards;
   position: relative;
   display: flex;
   justify-content: center;
@@ -258,7 +255,7 @@ const QuoteWrapper = styled(QuoteWrap)`
     b {
       opacity: 0;
       font-size: 75px;
-      animation: ${fadeIn} 0.5s ease-out forwards 0.25s;
+      animation: ${fadeIn} 0.5s ease-out 0.25s forwards;
     }
   }
 

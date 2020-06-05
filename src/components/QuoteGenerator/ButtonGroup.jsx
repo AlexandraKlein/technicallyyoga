@@ -45,7 +45,7 @@ export default ButtonGroup;
 const ButtonContainer = styled.div`
   position: relative;
   opacity: 0;
-  animation: ${fadeIn} 0.5s ease-out 0.25s forwards;
+  animation: ${fadeIn} 0.5s ease-out 0.75s forwards;
 
   p {
     position: relative;

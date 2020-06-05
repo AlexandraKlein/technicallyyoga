@@ -1,26 +1,20 @@
-import React, { PureComponent } from "./node_modules/react";
-import styled, { keyframes } from "./node_modules/styled-components";
+import React, { PureComponent } from "react";
+import styled from "styled-components/macro";
 import ParticlesBg from "particles-bg";
 import { bp, bpm, theme } from "../../styles/theme";
-import { GlobalStyle } from "../../styles/global";
+import { GlobalStyle, fadeIn } from "../../styles/global";
 import Button from "../Button";
-import Main from "../../containers/main";
 import QuoteGenerator from "../QuoteGenerator";
-import Overlay from "../Overlays";
+import Overlay from "../Overlay";
 
 class Container extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isOpen: false,
-      mountOverlay: false,
-    };
-  }
+  state = {
+    isOpen: false,
+    mountOverlay: false,
+  };
 
   handleOverlay = () => {
     this.setState({
-      mountOverlay: true,
       isOpen: !this.state.isOpen,
     });
   };
@@ -29,43 +23,39 @@ class Container extends PureComponent {
     const { isOpen, mountOverlay } = this.state;
 
     return (
-      <Main>
+      <MainContainer>
         <GlobalStyle />
-        <div>
-          <CopyContainer>
-            <ParticlesBg
-              bg={true}
-              color={theme.darkPurple}
-              num={100}
-              type="cobweb"
-            />
-            <Copy>
-              <h1>
-                Technically <span>Yoga</span>
-              </h1>
-              <p>{this.props.description}</p>
-              <AnimatedButton onClick={this.handleOverlay}>
-                About Us
-              </AnimatedButton>
-            </Copy>
-          </CopyContainer>
-          <QuoteGenerator />
-        </div>
-
+        <CopyContainer>
+          <ParticlesBg
+            bg={true}
+            color={theme.darkPurple}
+            num={100}
+            type="cobweb"
+          />
+          <Copy>
+            <h1>
+              Technically <span>Yoga</span>
+            </h1>
+            <p>{this.props.description}</p>
+            <AnimatedButton onClick={this.handleOverlay}>
+              About Us
+            </AnimatedButton>
+          </Copy>
+        </CopyContainer>
+        <QuoteGenerator />
         {mountOverlay && <Overlay close={this.handleOverlay} isOpen={isOpen} />}
-      </Main>
+      </MainContainer>
     );
   }
 }
 
-const fadeIn = keyframes`
-  from {
-    opacity: 0;
-  }
-
-  to {
-    opacity: 1;
-  }
+const MainContainer = styled.main`
+  position: relative;
+  font-size: 18px;
+  min-height: 100vh;
+  text-align: center;
+  background-color: ${theme.pink};
+  overflow: hidden;
 `;
 
 const CopyContainer = styled.div`
@@ -115,7 +105,7 @@ const Copy = styled.div`
     opacity: 0;
     margin-top: 0;
     margin-bottom: .5em;
-    animation: ${fadeIn} .75s ease-out 1s forwards;
+    animation: ${fadeIn} .75s ease-out .25s forwards;
 
     ${bp.desktop`
       font-size: 7vw;
@@ -128,7 +118,7 @@ const Copy = styled.div`
       font-weight: normal;
       display: inline-block;
       transform: translate(-10px, 10px);
-      animation: ${fadeIn} .75s ease-out 1.25s forwards;
+      animation: ${fadeIn} .75s ease-out .5s forwards;
 
       ${bpm.tablet`
        display: block;
@@ -150,7 +140,7 @@ const Copy = styled.div`
     opacity:0;
     font-size: 16px;
     line-height: 1.6;
-    animation: ${fadeIn} .75s ease-out 1.5s forwards;
+    animation: ${fadeIn} .75s ease-out .75s forwards;
     
     ${bp.desktop`
       font-size: 20px;
@@ -161,7 +151,7 @@ const Copy = styled.div`
 
 const AnimatedButton = styled(Button)`
   opacity: 0;
-  animation: ${fadeIn} 0.75s ease-out 1.75s forwards;
+  animation: ${fadeIn} 0.75s ease-out 1s forwards;
 `;
 
 export default Container;

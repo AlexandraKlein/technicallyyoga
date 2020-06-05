@@ -1,14 +1,15 @@
 import React, { PureComponent } from "react";
 import styled from "styled-components/macro";
 import domtoimage from "dom-to-image";
+// eslint-disable-next-line no-unused-vars
 import { saveAs } from "file-saver";
 import animateScrollTo from "animated-scroll-to";
 import Text from "markov-chains-text";
 import { yogaQuotes } from "../../quotes.js";
-import { QuoteWrapShared, BgImage, QuoteBefore, QuoteAfter } from "./shared";
-import ButtonGroup from "./button-group";
-import QuoteClone from "./quote-clone";
-import CustomControls from "./custom-controls";
+import { QuoteWrap, BgImage, QuoteBefore, QuoteAfter } from "./QuoteStack";
+import ButtonGroup from "./ButtonGroup";
+import QuoteClone from "./QuoteCone";
+import CustomControls from "./CustomControls";
 import { fadeIn, textFadeIn } from "../../styles/global";
 import { bp, theme } from "../../styles/theme";
 
@@ -23,16 +24,16 @@ class QuoteGenerator extends PureComponent {
     this.quoteImg = React.createRef();
     this.shareImgContainer = React.createRef();
     this.generator = React.createRef();
-  }
 
-  state = {
-    quote: "Click below and I will generate a quote for you.",
-    numWords: null,
-    image: "https://technicallyyoga.com/images/bg-image234.jpg",
-    shareImage: null,
-    custom: false,
-    customText: "Create Your Own",
-  };
+    this.state = {
+      quote: "Click below and I will generate a quote for you.",
+      numWords: null,
+      image: "https://technicallyyoga.com/images/bg-image234.jpg",
+      shareImage: null,
+      custom: false,
+      customText: "Create Your Own",
+    };
+  }
 
   handleShareImage = () => {
     const createImage = () => {
@@ -52,7 +53,6 @@ class QuoteGenerator extends PureComponent {
   };
 
   handleSaveImage = () => {
-    console.log("click");
     domtoimage.toBlob(this.quoteImg.current, imageSettings).then(blob => {
       window.saveAs(blob, "technically-yoga-quote.png");
     });
@@ -95,20 +95,16 @@ class QuoteGenerator extends PureComponent {
     const isString = typeof quote === "string";
     let trimmedQuote = quote.substr(0, maxLength);
 
-    trimmedQuote = trimmedQuote.substr(
-      0,
-      Math.min(trimmedQuote.length, trimmedQuote.lastIndexOf(" "))
-    );
+    trimmedQuote = quote
+      .substr(0, maxLength)
+      .substr(0, Math.min(trimmedQuote.length, trimmedQuote.lastIndexOf(" ")));
 
-    let quoteForState;
-
-    if (isString && charIsOver) {
-      quoteForState = trimmedQuote + ".";
-    } else if (isString) {
-      quoteForState = quote;
-    } else {
-      quoteForState = "Try again";
-    }
+    const quoteForState =
+      isString && charIsOver
+        ? trimmedQuote + "."
+        : isString
+        ? quote
+        : "Try again";
 
     this.handleBackgroundImages();
 
@@ -134,8 +130,6 @@ class QuoteGenerator extends PureComponent {
   render() {
     const { image, quote, custom, customText, shareImage } = this.state;
 
-    console.log(this.state);
-
     return (
       <Container>
         <div>
@@ -151,18 +145,18 @@ class QuoteGenerator extends PureComponent {
             )}
 
             <QuoteContainer>
-              <QuoteWrap>
+              <QuoteWrapper>
                 <BgImage src={image} />
 
                 {quote && (
                   <h3>
                     <QuoteBefore>&ldquo;</QuoteBefore>
-                    <span>{this.wrapWords(quote)}</span>
+                    {this.wrapWords(quote)}
                     <QuoteAfter>&rdquo;</QuoteAfter>
                   </h3>
                 )}
                 <p>@technicallyyoga</p>
-              </QuoteWrap>
+              </QuoteWrapper>
             </QuoteContainer>
 
             <QuoteClone quoteImg={this.quoteImg} image={image} quote={quote} />
@@ -182,14 +176,6 @@ class QuoteGenerator extends PureComponent {
             {shareImage && (
               <ShareImageContainer>
                 <img src={shareImage} alt={quote} />
-
-                <button
-                  style={{ marginTop: "15px" }}
-                  className={"mobile-only"}
-                  onClick={this.handleSaveImage}
-                >
-                  Save Quote As Image
-                </button>
               </ShareImageContainer>
             )}
           </div>
@@ -233,7 +219,7 @@ const QuoteContainer = styled.div`
   margin: 0 0 20px;
 `;
 
-const QuoteWrap = styled(QuoteWrapShared)`
+const QuoteWrapper = styled(QuoteWrap)`
   margin-top: calc((100vw - 20px) / 20);
   position: relative;
   height: calc(100vw - 20px);

@@ -1,12 +1,12 @@
-import React, { PureComponent } from "react";
-import styled, { keyframes } from "styled-components";
+import React, { PureComponent } from "./node_modules/react";
+import styled, { keyframes } from "./node_modules/styled-components";
 import ParticlesBg from "particles-bg";
 import { bp, bpm, theme } from "../../styles/theme";
 import { GlobalStyle } from "../../styles/global";
-import Button from "../../components/Button";
+import Button from "../Button";
 import Main from "../../containers/main";
-import QuoteGenerator from "../../components/quote-generator";
-import Overlay from "../overlay";
+import QuoteGenerator from "../QuoteGenerator";
+import Overlay from "../Overlays";
 
 class Container extends PureComponent {
   constructor(props) {

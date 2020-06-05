@@ -1,11 +1,11 @@
 import React from "react";
 import styled from "styled-components/macro";
 import { bp } from "../../styles/theme";
-import { QuoteWrapShared, BgImage, QuoteBefore, QuoteAfter } from "./shared";
+import { QuoteWrap, BgImage, QuoteBefore, QuoteAfter } from "./QuoteStack";
 
 const QuoteClone = ({ quote, image, quoteImg }) => (
-  <QuoteContainerClone>
-    <QuoteWrapClone ref={quoteImg}>
+  <QuoteCloneContainer>
+    <QuoteCloneWrap ref={quoteImg}>
       <BgImage src={image} />
       <h3>
         <QuoteBefore style={{ top: "-120px" }}>&ldquo;</QuoteBefore>
@@ -13,18 +13,17 @@ const QuoteClone = ({ quote, image, quoteImg }) => (
         <QuoteAfter style={{ bottom: "-240px" }}>&rdquo;</QuoteAfter>
       </h3>
       <p>@technicallyyoga</p>
-    </QuoteWrapClone>
-  </QuoteContainerClone>
+    </QuoteCloneWrap>
+  </QuoteCloneContainer>
 );
 
 export default QuoteClone;
-
-const QuoteContainerClone = styled.div`
+const QuoteCloneContainer = styled.div`
   display: flex;
   justify-content: center;
 `;
 
-const QuoteWrapClone = styled(QuoteWrapShared)`
+const QuoteCloneWrap = styled(QuoteWrap)`
   position: absolute;
   top: 0;
   left: 0;

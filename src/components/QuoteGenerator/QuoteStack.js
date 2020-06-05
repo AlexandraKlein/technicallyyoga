@@ -2,7 +2,7 @@ import styled from "styled-components/macro";
 import { bp, theme } from "../../styles/theme";
 import { fadeIn } from "../../styles/global";
 
-export const QuoteWrapShared = styled.div`
+export const QuoteWrap = styled.div`
   padding: 0;
   background-color: ${theme.pink};
   color: ${theme.darkerBlue};

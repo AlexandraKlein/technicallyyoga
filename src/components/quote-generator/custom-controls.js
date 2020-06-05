@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components/macro";
-import { ButtonSecondary } from "./shared";
+import Button from "../Button";
 
 const CustomControls = ({
   type,
@@ -10,9 +10,9 @@ const CustomControls = ({
   handleCreateCustomQuote,
 }) => (
   <CustomInputs>
-    <ButtonSecondary onClick={handleBackgroundImages}>
+    <Button isSecondary onClick={handleBackgroundImages}>
       Change Background
-    </ButtonSecondary>
+    </Button>
     <input
       type={type}
       maxLength={maxLength}

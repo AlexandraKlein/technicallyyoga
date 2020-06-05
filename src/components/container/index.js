@@ -3,6 +3,7 @@ import styled, { keyframes } from "styled-components";
 import ParticlesBg from "particles-bg";
 import { bp, bpm, theme } from "../../styles/theme";
 import { GlobalStyle } from "../../styles/global";
+import Button from "../../components/Button";
 import Main from "../../containers/main";
 import QuoteGenerator from "../../components/quote-generator";
 import Overlay from "../overlay";
@@ -10,7 +11,6 @@ import Overlay from "../overlay";
 class Container extends PureComponent {
   constructor(props) {
     super(props);
-    this.webWavesRef = React.createRef();
 
     this.state = {
       isOpen: false,
@@ -44,7 +44,9 @@ class Container extends PureComponent {
                 Technically <span>Yoga</span>
               </h1>
               <p>{this.props.description}</p>
-              <Button onClick={this.handleOverlay}>About Us</Button>
+              <AnimatedButton onClick={this.handleOverlay}>
+                About Us
+              </AnimatedButton>
             </Copy>
           </CopyContainer>
           <QuoteGenerator />
@@ -157,7 +159,7 @@ const Copy = styled.div`
   }
 `;
 
-const Button = styled.button`
+const AnimatedButton = styled(Button)`
   opacity: 0;
   animation: ${fadeIn} 0.75s ease-out 1.75s forwards;
 `;

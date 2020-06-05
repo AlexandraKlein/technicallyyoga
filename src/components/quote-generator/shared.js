@@ -2,23 +2,6 @@ import styled from "styled-components/macro";
 import { bp, theme } from "../../styles/theme";
 import { fadeIn } from "../../styles/global";
 
-export const Button = styled.button``;
-
-export const ButtonSecondary = styled(Button)`
-  border: 0;
-  border-top: 5px solid ${theme.pink};
-  border-bottom: 5px solid ${theme.purple};
-
-  &:hover {
-    border-top: 5px solid ${theme.purple};
-    background-color: ${theme.purple};
-  }
-
-  &:disabled {
-    border-bottom: 5px solid ${theme.pink};
-  }
-`;
-
 export const QuoteWrapShared = styled.div`
   padding: 0;
   background-color: ${theme.pink};

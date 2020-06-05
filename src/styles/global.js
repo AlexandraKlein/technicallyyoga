@@ -123,38 +123,7 @@ export const GlobalStyle = createGlobalStyle`
       `}
     }
     
-    button,
-    input[type=submit] {
-      box-sizing : border-box;
-      font-family: 'Roboto Condensed', sans-serif;
-      text-transform: uppercase;
-      font-size: 20px;
-      line-height: 1;
-      padding: .75rem 1rem;
-      text-decoration: none;
-      background-color: ${theme.pink};
-      color: ${theme.darkBlue};
-      cursor: pointer;
-      border: solid 5px ${theme.darkBlue};
-      transition: .2s;
-      width: 100%;
     
-      ${bp.tablet`
-        padding: .75rem 2rem;
-        width: auto;
-      `}
-    
-      &:hover {
-        background-color: ${theme.darkBlue};
-        color: ${theme.white};
-        border-radius: 180px 30px 180px 30px/30px 180px 30px 180px;
-      }
-    
-      &:disabled {
-        opacity: .7;
-        pointer-events: none;
-      }
-    }
     
     h1 {
       line-height: .8;

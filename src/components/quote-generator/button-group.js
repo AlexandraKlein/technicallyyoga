@@ -2,7 +2,7 @@ import React from "react";
 import styled from "styled-components/macro";
 import { fadeIn } from "../../styles/global";
 import { bp, theme } from "../../styles/theme";
-import { Button, ButtonSecondary } from "./shared";
+import Button from "../Button";
 
 const ButtonGroup = ({
   custom,
@@ -21,17 +21,21 @@ const ButtonGroup = ({
       </>
     )}
 
-    <button onClick={handleCustomChoice}>
+    <Button onClick={handleCustomChoice}>
       {custom ? <span>&larr; &nbsp;</span> : ""}
       {customText}
-    </button>
+    </Button>
     <ButtonsRow>
-      <ButtonSecondary disabled={quote.length < 1} onClick={handleSaveImage}>
+      <Button isSecondary disabled={quote.length < 1} onClick={handleSaveImage}>
         &darr; &nbsp; Save Quote As Image
-      </ButtonSecondary>
-      <ButtonSecondary onClick={handleShareImage} disabled={quote.length < 1}>
+      </Button>
+      <Button
+        isSecondary
+        onClick={handleShareImage}
+        disabled={quote.length < 1}
+      >
         Create Share Image
-      </ButtonSecondary>
+      </Button>
     </ButtonsRow>
   </ButtonContainer>
 );

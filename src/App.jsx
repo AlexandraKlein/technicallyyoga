@@ -1,13 +1,17 @@
 import React, { PureComponent } from "react";
+import "normalize.css";
 import styled from "styled-components/macro";
 import ParticlesBg from "particles-bg";
-import { bp, bpm, theme } from "../../styles/theme";
-import { GlobalStyle, fadeIn } from "../../styles/global";
-import Button from "../Button";
-import QuoteGenerator from "../QuoteGenerator";
-import Overlay from "../Overlay";
+import { bp, bpm, theme } from "./styles/theme";
+import { GlobalStyle, fadeIn } from "./styles/global";
+import Button from "./components/Button";
+import QuoteGenerator from "./components/QuoteGenerator";
+import Overlay from "./components/Overlay";
 
-class Container extends PureComponent {
+const description =
+  "Technically Yoga is the spirit front end of three who love yoga, tech, and Marina Del Rey. Click away and discover a quote that makes your horoscope jealous. A Technically Yoga generated quote is guaranteed to either awaken your soul, give cognitive unease, brighten your Darshan or bring understanding to that mildly depressed itch in the back of your head. This is where your Karma and Meta Elements link to bring you a moment of ease. Or, create your own quote and give Rumi a run for his shakti. You can save a Technically Yoga quote and share with a friend.";
+
+class App extends PureComponent {
   state = {
     isOpen: false,
     mountOverlay: false,
@@ -37,7 +41,7 @@ class Container extends PureComponent {
             <h1>
               Technically <span>Yoga</span>
             </h1>
-            <p>{this.props.description}</p>
+            <p>{description}</p>
             <AnimatedButton onClick={this.handleOverlay}>
               About Us
             </AnimatedButton>
@@ -155,4 +159,4 @@ const AnimatedButton = styled(Button)`
   animation: ${fadeIn} 0.75s ease-out 1s forwards;
 `;
 
-export default Container;
+export default App;

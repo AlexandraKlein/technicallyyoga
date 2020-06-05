@@ -2,6 +2,12 @@ import React from "react";
 import styled from "styled-components/macro";
 import { theme, bp } from "../styles/theme";
 
+const Button = props => (
+  <StyledButton {...props}>{props.children}</StyledButton>
+);
+
+export default Button;
+
 const StyledButton = styled.button`
   box-sizing: border-box;
   font-family: "Roboto Condensed", sans-serif;
@@ -51,9 +57,3 @@ const StyledButton = styled.button`
     pointer-events: none;
   }
 `;
-
-const Button = props => (
-  <StyledButton {...props}>{props.children}</StyledButton>
-);
-
-export default Button;

@@ -95,8 +95,8 @@ const ButtonsRow = styled.div`
   margin-top: 45px;
 
   ${bp.tablet`
-     flex-direction: row;
-    `}
+    flex-direction: row;
+  `}
 
   button {
     margin: 10px 0;

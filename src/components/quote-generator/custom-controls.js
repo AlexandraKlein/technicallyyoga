@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components/macro";
+import Input from "../Input";
 import Button from "../Button";
 
 const CustomControls = ({
@@ -9,22 +10,22 @@ const CustomControls = ({
   handleBackgroundImages,
   handleCreateCustomQuote,
 }) => (
-  <CustomInputs>
+  <Container>
     <Button isSecondary onClick={handleBackgroundImages}>
       Change Background
     </Button>
-    <input
+    <Input
       type={type}
       maxLength={maxLength}
       placeholder={placeholder}
       onChange={handleCreateCustomQuote}
     />
-  </CustomInputs>
+  </Container>
 );
 
 export default CustomControls;
 
-const CustomInputs = styled.div`
+const Container = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;

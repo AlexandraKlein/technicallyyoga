@@ -7,8 +7,10 @@ const Input = props => <StyledInput {...props} />;
 export default Input;
 
 const StyledInput = styled.input`
+  -webkit-appearance: none;
   box-sizing: border-box;
   border: 0;
+  outline: 0;
   border-bottom: 5px solid ${theme.darkBlue};
   background-color: $white !important;
   color: ${theme.darkBlue};

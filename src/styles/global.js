@@ -1,5 +1,5 @@
 import { createGlobalStyle, css, keyframes } from "styled-components";
-import { theme, fontStack, bp, bpm } from "./theme";
+import { fontStack, bp, bpm } from "./theme";
 
 export const fadeIn = keyframes`
   from {
@@ -93,37 +93,6 @@ export const GlobalStyle = createGlobalStyle`
     font-size: 16px;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;  
-    
-    input[type=text],
-    input[type=submit],
-      button {
-      outline: 0;
-      -webkit-appearance: none;
-    }
-    
-    input[type=text] {
-      box-sizing : border-box;
-      border: 0;
-      border-bottom: 5px solid ${theme.darkBlue};
-      background-color: $white !important;
-      color: ${theme.darkBlue};
-      font-size: 18px;
-      padding: .75rem 1rem;
-      border-radius: 0;
-      margin-bottom: 20px;
-      width: 100%;
-      
-      ${bp.tablet`
-        padding: .75rem 2rem;
-        width: 700px;
-      `}
-    
-      ${bp.desktop`
-         width: 520px;
-      `}
-    }
-    
-    
     
     h1 {
       line-height: .8;

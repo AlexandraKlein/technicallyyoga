@@ -9,6 +9,8 @@ const Button = props => (
 export default Button;
 
 const StyledButton = styled.button`
+  outline: 0;
+  -webkit-appearance: none;
   box-sizing: border-box;
   font-family: "Roboto Condensed", sans-serif;
   text-transform: uppercase;

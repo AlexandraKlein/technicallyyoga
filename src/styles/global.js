@@ -1,5 +1,5 @@
-import {createGlobalStyle, css, keyframes} from 'styled-components'
-import { theme, fontStack, bp, bpm } from './theme';
+import { createGlobalStyle, css, keyframes } from "styled-components";
+import { theme, fontStack, bp, bpm } from "./theme";
 
 export const fadeIn = keyframes`
   from {
@@ -29,16 +29,18 @@ export const textFadeIn = keyframes`
 `;
 
 function itemSpanCSS() {
-  let styles = '';
+  let styles = "";
 
   for (let i = 0; i < 40; i += 1) {
     styles += `
       .item-span-${i} {
-        animation-delay: ${.5 + i/8}s !important;
+        animation-delay: ${0.5 + i / 8}s !important;
       }
     `;
   }
-  return css`${styles}`;
+  return css`
+    ${styles}
+  `;
 }
 
 export const GlobalStyle = createGlobalStyle`  
@@ -171,4 +173,3 @@ export const GlobalStyle = createGlobalStyle`
     }
   }
 `;
-

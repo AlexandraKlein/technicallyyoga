@@ -1,10 +1,18 @@
-import React from 'react';
-import styled from 'styled-components/macro';
+import React from "react";
+import styled from "styled-components/macro";
 import { ButtonSecondary } from "./shared";
 
-const CustomControls = ({type, maxLength, placeholder, handleBackgroundImages, handleCreateCustomQuote}) => (
+const CustomControls = ({
+  type,
+  maxLength,
+  placeholder,
+  handleBackgroundImages,
+  handleCreateCustomQuote,
+}) => (
   <CustomInputs>
-    <ButtonSecondary onClick={handleBackgroundImages}>Change Background</ButtonSecondary>
+    <ButtonSecondary onClick={handleBackgroundImages}>
+      Change Background
+    </ButtonSecondary>
     <input
       type={type}
       maxLength={maxLength}

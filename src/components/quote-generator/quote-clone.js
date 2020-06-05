@@ -1,17 +1,16 @@
-import React from 'react';
-import styled from 'styled-components/macro';
-import { bp, theme } from "../../styles/theme";
-import { fadeIn } from "../../styles/global";
-import { QuoteWrapShared, BgImage, QuoteBefore, QuoteAfter } from './shared'
+import React from "react";
+import styled from "styled-components/macro";
+import { bp } from "../../styles/theme";
+import { QuoteWrapShared, BgImage, QuoteBefore, QuoteAfter } from "./shared";
 
-const QuoteClone = ({ quote, image, quoteImg }) =>(
+const QuoteClone = ({ quote, image, quoteImg }) => (
   <QuoteContainerClone>
     <QuoteWrapClone ref={quoteImg}>
-      <BgImage src={image}/>
+      <BgImage src={image} />
       <h3>
-        <QuoteBefore style={{top: '-120px'}}>&ldquo;</QuoteBefore>
+        <QuoteBefore style={{ top: "-120px" }}>&ldquo;</QuoteBefore>
         {quote}
-        <QuoteAfter style={{bottom: '-240px'}}>&rdquo;</QuoteAfter>
+        <QuoteAfter style={{ bottom: "-240px" }}>&rdquo;</QuoteAfter>
       </h3>
       <p>@technicallyyoga</p>
     </QuoteWrapClone>

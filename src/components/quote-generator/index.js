@@ -1,16 +1,16 @@
-import React, { PureComponent } from 'react';
-import styled from 'styled-components/macro';
-import domtoimage from 'dom-to-image';
-import { saveAs } from 'file-saver';
-import animateScrollTo from 'animated-scroll-to';
-import Text from 'markov-chains-text';
-import { yogaQuotes } from '../../quotes.js';
-import { QuoteWrapShared, BgImage, QuoteBefore, QuoteAfter } from'./shared';
-import ButtonGroup from './button-group';
-import QuoteClone from './quote-clone';
-import CustomControls from './custom-controls';
-import { fadeIn, textFadeIn } from '../../styles/global';
-import { bp, theme } from '../../styles/theme';
+import React, { PureComponent } from "react";
+import styled from "styled-components/macro";
+import domtoimage from "dom-to-image";
+import { saveAs } from "file-saver";
+import animateScrollTo from "animated-scroll-to";
+import Text from "markov-chains-text";
+import { yogaQuotes } from "../../quotes.js";
+import { QuoteWrapShared, BgImage, QuoteBefore, QuoteAfter } from "./shared";
+import ButtonGroup from "./button-group";
+import QuoteClone from "./quote-clone";
+import CustomControls from "./custom-controls";
+import { fadeIn, textFadeIn } from "../../styles/global";
+import { bp, theme } from "../../styles/theme";
 
 const imageSettings = {
   width: 900,
@@ -18,7 +18,6 @@ const imageSettings = {
 };
 
 class QuoteGenerator extends PureComponent {
-
   constructor(props) {
     super(props);
     this.quoteImg = React.createRef();
@@ -27,12 +26,12 @@ class QuoteGenerator extends PureComponent {
   }
 
   state = {
-    quote: 'Click below and I will generate a quote for you.',
+    quote: "Click below and I will generate a quote for you.",
     numWords: null,
-    image: 'https://technicallyyoga.com/images/bg-image234.jpg',
+    image: "https://technicallyyoga.com/images/bg-image234.jpg",
     shareImage: null,
     custom: false,
-    customText: 'Create Your Own',
+    customText: "Create Your Own",
   };
 
   handleShareImage = () => {
@@ -53,9 +52,9 @@ class QuoteGenerator extends PureComponent {
   };
 
   handleSaveImage = () => {
-    console.log('click')
+    console.log("click");
     domtoimage.toBlob(this.quoteImg.current, imageSettings).then(blob => {
-      window.saveAs(blob, 'quote.png');
+      window.saveAs(blob, "technically-yoga-quote.png");
     });
   };
 
@@ -63,9 +62,9 @@ class QuoteGenerator extends PureComponent {
     this.setState({
       custom: !this.state.custom,
       customText: this.state.custom
-        ? 'Create Your Own'
-        : 'Go Back To Generator',
-      quote: this.state.custom ? this.state.quote : '',
+        ? "Create Your Own"
+        : "Go Back To Generator",
+      quote: this.state.custom ? this.state.quote : "",
     });
 
     if (this.state.custom) {
@@ -93,62 +92,55 @@ class QuoteGenerator extends PureComponent {
     const quote = fakeYogaQuote.makeSentence();
     const maxLength = 160;
     const charIsOver = quote.length > maxLength;
-    const isString = typeof quote === 'string';
+    const isString = typeof quote === "string";
     let trimmedQuote = quote.substr(0, maxLength);
 
     trimmedQuote = trimmedQuote.substr(
       0,
-      Math.min(trimmedQuote.length, trimmedQuote.lastIndexOf(' ')),
+      Math.min(trimmedQuote.length, trimmedQuote.lastIndexOf(" "))
     );
 
     let quoteForState;
 
     if (isString && charIsOver) {
-      quoteForState = trimmedQuote + '.';
+      quoteForState = trimmedQuote + ".";
     } else if (isString) {
       quoteForState = quote;
     } else {
-      quoteForState = 'Try again';
+      quoteForState = "Try again";
     }
 
     this.handleBackgroundImages();
 
-    this.setState(
-      { quote: '' },
-      () =>
-        this.setState({
-          quote: quoteForState.trim(),
-          numWords: trimmedQuote.split(' ').length,
-        })
+    this.setState({ quote: "" }, () =>
+      this.setState({
+        quote: quoteForState.trim(),
+        numWords: trimmedQuote.split(" ").length,
+      })
     );
   };
 
   wrapWords = str => {
-    let words = str.split(' ');
+    let words = str.split(" ");
     return words.map((val, index) => {
-      return <span key={index} className={`item-span-${index}`}>{val}&nbsp;</span>;
+      return (
+        <span key={index} className={`item-span-${index}`}>
+          {val}&nbsp;
+        </span>
+      );
     });
   };
 
   render() {
-    const {
-      image,
-      quote,
-      custom,
-      customText,
-      shareImage
-    } = this.state;
+    const { image, quote, custom, customText, shareImage } = this.state;
 
     console.log(this.state);
-
 
     return (
       <Container>
         <div>
-
           <Generator ref={this.generator}>
-
-            { custom && (
+            {custom && (
               <CustomControls
                 type="text"
                 maxLength={200}
@@ -160,26 +152,20 @@ class QuoteGenerator extends PureComponent {
 
             <QuoteContainer>
               <QuoteWrap>
-                <BgImage src={image}/>
+                <BgImage src={image} />
 
-                { quote &&
-                <h3>
-                  <QuoteBefore>&ldquo;</QuoteBefore>
-                  <span>
-                    { this.wrapWords(quote) }
-                  </span>
-                  <QuoteAfter>&rdquo;</QuoteAfter>
-                </h3>
-                }
+                {quote && (
+                  <h3>
+                    <QuoteBefore>&ldquo;</QuoteBefore>
+                    <span>{this.wrapWords(quote)}</span>
+                    <QuoteAfter>&rdquo;</QuoteAfter>
+                  </h3>
+                )}
                 <p>@technicallyyoga</p>
               </QuoteWrap>
             </QuoteContainer>
 
-            <QuoteClone
-              quoteImg={this.quoteImg}
-              image={image}
-              quote={quote}
-            />
+            <QuoteClone quoteImg={this.quoteImg} image={image} quote={quote} />
 
             <ButtonGroup
               custom={custom}
@@ -198,8 +184,8 @@ class QuoteGenerator extends PureComponent {
                 <img src={shareImage} alt={quote} />
 
                 <button
-                  style={{marginTop: '15px'}}
-                  className={'mobile-only'}
+                  style={{ marginTop: "15px" }}
+                  className={"mobile-only"}
                   onClick={this.handleSaveImage}
                 >
                   Save Quote As Image
@@ -207,11 +193,9 @@ class QuoteGenerator extends PureComponent {
               </ShareImageContainer>
             )}
           </div>
-
-
         </div>
       </Container>
-    )
+    );
   }
 }
 
@@ -242,7 +226,7 @@ const Generator = styled.div`
 
 const QuoteContainer = styled.div`
   opacity: 0;
-  animation: ${fadeIn} .5s ease-out 2s forwards;
+  animation: ${fadeIn} 0.5s ease-out 2s forwards;
   position: relative;
   display: flex;
   justify-content: center;
@@ -250,7 +234,7 @@ const QuoteContainer = styled.div`
 `;
 
 const QuoteWrap = styled(QuoteWrapShared)`
-  margin-top: calc((100vw - 20px)/20);
+  margin-top: calc((100vw - 20px) / 20);
   position: relative;
   height: calc(100vw - 20px);
   width: calc(100vw - 20px);
@@ -288,33 +272,33 @@ const QuoteWrap = styled(QuoteWrapShared)`
     b {
       opacity: 0;
       font-size: 75px;
-      animation: ${fadeIn} .5s ease-out forwards .25s;
+      animation: ${fadeIn} 0.5s ease-out forwards 0.25s;
     }
   }
-  
-   p {
-      font-size: 16px;
-      bottom: 10px;
-      right: 10px;
 
-      ${bp.tablet`
+  p {
+    font-size: 16px;
+    bottom: 10px;
+    right: 10px;
+
+    ${bp.tablet`
         font-size: 22px;
         bottom: 15px;
         right: 15px;
       `}
-    }
+  }
 `;
 
 const ShareImageContainer = styled.div`
   margin: 60px 0 30px;
-  
+
   img {
     width: 100%;
-    
+
     ${bp.tablet`
       width: 700px;
     `}
-    
+
     ${bp.desktop`
       width: 520px
     `}

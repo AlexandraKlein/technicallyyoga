@@ -1,4 +1,4 @@
-import styled from 'styled-components/macro';
+import styled from "styled-components/macro";
 import { bp, theme } from "../../styles/theme";
 import { fadeIn } from "../../styles/global";
 
@@ -29,7 +29,7 @@ export const QuoteWrapShared = styled.div`
 
   &:after,
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     top: 0;
     left: 0;
@@ -40,17 +40,17 @@ export const QuoteWrapShared = styled.div`
 
   &:before {
     background-color: ${theme.purple};
-    opacity: .8;
+    opacity: 0.8;
   }
 
   &:after {
     background-color: ${theme.purple};
-    opacity: .65;
+    opacity: 0.65;
     mix-blend-mode: hue;
   }
 
   h3 {
-    font-family: 'Anton', sans-serif;
+    font-family: "Anton", sans-serif;
     font-weight: normal;
     position: relative;
     z-index: 2;
@@ -61,7 +61,7 @@ export const QuoteWrapShared = styled.div`
 
     b {
       position: absolute;
-      font-family: 'Lily Script One', cursive;
+      font-family: "Lily Script One", cursive;
       color: ${theme.darkPurple};
       font-weight: normal;
       left: 50%;
@@ -70,7 +70,7 @@ export const QuoteWrapShared = styled.div`
   }
 
   p {
-    font-family: 'Alegreya', serif;
+    font-family: "Alegreya", serif;
     color: ${theme.purple};
     margin: 0;
     position: absolute;
@@ -91,13 +91,12 @@ export const BgImage = styled.img`
 const QuoteCharacter = styled.b`
   opacity: 0;
   font-size: 75px;
-  animation: ${fadeIn} .5s ease-out forwards .25s;
+  animation: ${fadeIn} 0.5s ease-out forwards 0.25s;
 
   ${bp.tablet`
     font-size: 100px;
   `}
 `;
-
 
 export const QuoteBefore = styled(QuoteCharacter)`
   top: -50px;
@@ -114,4 +113,3 @@ export const QuoteAfter = styled(QuoteCharacter)`
     bottom: -140px;
   `}
 `;
-

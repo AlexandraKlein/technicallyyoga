@@ -1,12 +1,12 @@
-import React from 'react';
-import styled from 'styled-components';
-import { theme } from '../../styles/theme';
-import { GlobalStyle } from '../../styles/global';
+import React from "react";
+import styled from "styled-components";
+import { theme } from "../../styles/theme";
+import { GlobalStyle } from "../../styles/global";
 
 const Main = ({ children }) => (
   <MainContainer>
-    <GlobalStyle/>
-    { children }
+    <GlobalStyle />
+    {children}
   </MainContainer>
 );
 

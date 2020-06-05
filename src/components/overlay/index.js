@@ -1,10 +1,10 @@
-import React from 'react';
-import styled, { keyframes } from 'styled-components';
-import { bp, theme } from '../../styles/theme';
+import React from "react";
+import styled, { keyframes } from "styled-components";
+import { bp, theme } from "../../styles/theme";
 
 const Overlay = ({ close, isOpen }) => {
   return (
-    <Container className={isOpen ? 'isOpen' : ''}>
+    <Container className={isOpen ? "isOpen" : ""}>
       <Content>
         <Close onClick={close}>
           <span />
@@ -58,7 +58,7 @@ const Overlay = ({ close, isOpen }) => {
 
 export default Overlay;
 
-const padding = '12vw';
+const padding = "12vw";
 
 const slideIn = keyframes`
   from {
@@ -86,25 +86,25 @@ const Container = styled.div`
   background: ${theme.darkPurple};
   height: 100%;
   right: 0;
-  bottom:0;
+  bottom: 0;
   z-index: 1;
-  animation: ${slideOut} .2s forwards;
-  
+  animation: ${slideOut} 0.2s forwards;
+
   &.isOpen {
-    animation: ${slideIn} .2s forwards;
+    animation: ${slideIn} 0.2s forwards;
   }
-  
+
   ${bp.desktop`
     width: 60%;
   `}
-  
+
   h2 {
-     font-size: 48px;
-     ${bp.desktop`
+    font-size: 48px;
+    ${bp.desktop`
         font-size: 62px;
      `}
   }
-  
+
   p {
     font-size: 18px;
     font-weight: 400;
@@ -118,7 +118,7 @@ const Container = styled.div`
 const Content = styled.div`
   color: ${theme.white};
   padding: 60px 20px;
-  
+
   ${bp.desktop`
     padding: 60px ${padding};
   `}
@@ -129,7 +129,7 @@ const ImageContainer = styled.div`
   justify-content: space-around;
   align-items: center;
   margin-bottom: 30px;
-  
+
   ${bp.desktop`
     justify-content: space-between;
     margin-bottom: 60px;
@@ -145,7 +145,7 @@ const ImageContainer = styled.div`
       width: 200px;
       height: 200px;
     `}
-    
+
     ${bp.desktop`
       width: 10vw;
       height: 10vw;

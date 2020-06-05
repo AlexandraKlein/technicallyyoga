@@ -11,12 +11,12 @@ class Container extends PureComponent {
   constructor(props) {
     super(props);
     this.webWavesRef = React.createRef();
-  }
 
-  state = {
-    isOpen: false,
-    mountOverlay: false,
-  };
+    this.state = {
+      isOpen: false,
+      mountOverlay: false,
+    };
+  }
 
   handleOverlay = () => {
     this.setState({

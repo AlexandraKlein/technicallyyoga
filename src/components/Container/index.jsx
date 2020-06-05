@@ -16,6 +16,7 @@ class Container extends PureComponent {
   handleOverlay = () => {
     this.setState({
       isOpen: !this.state.isOpen,
+      mountOverlay: true,
     });
   };
 

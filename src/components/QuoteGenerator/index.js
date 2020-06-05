@@ -132,50 +132,52 @@ class QuoteGenerator extends PureComponent {
 
     return (
       <Container>
-        <Generator ref={this.generator}>
-          {custom && (
-            <CustomControls
-              type="text"
-              maxLength={200}
-              placeholder="Write your own quote here."
-              handleBackgroundImages={this.handleBackgroundImages}
-              handleCreateCustomQuote={this.handleCreateCustomQuote}
+        <div>
+          <Generator ref={this.generator}>
+            {custom && (
+              <CustomControls
+                type="text"
+                maxLength={200}
+                placeholder="Write your own quote here."
+                handleBackgroundImages={this.handleBackgroundImages}
+                handleCreateCustomQuote={this.handleCreateCustomQuote}
+              />
+            )}
+
+            <QuoteContainer>
+              <QuoteWrapper>
+                <BgImage src={image} />
+                {quote && (
+                  <h3>
+                    <QuoteBefore>&ldquo;</QuoteBefore>
+                    {this.wrapWords(quote)}
+                    <QuoteAfter>&rdquo;</QuoteAfter>
+                  </h3>
+                )}
+                <p>@technicallyyoga</p>
+              </QuoteWrapper>
+            </QuoteContainer>
+
+            <QuoteClone quoteImg={this.quoteImg} image={image} quote={quote} />
+
+            <ButtonGroup
+              custom={custom}
+              customText={customText}
+              quote={quote}
+              handleQuoteGenerator={this.handleQuoteGenerator}
+              handleCustomChoice={this.handleCustomChoice}
+              handleSaveImage={this.handleSaveImage}
+              handleShareImage={this.handleShareImage}
             />
-          )}
+          </Generator>
 
-          <QuoteContainer>
-            <QuoteWrapper>
-              <BgImage src={image} />
-              {quote && (
-                <h3>
-                  <QuoteBefore>&ldquo;</QuoteBefore>
-                  {this.wrapWords(quote)}
-                  <QuoteAfter>&rdquo;</QuoteAfter>
-                </h3>
-              )}
-              <p>@technicallyyoga</p>
-            </QuoteWrapper>
-          </QuoteContainer>
-
-          <QuoteClone quoteImg={this.quoteImg} image={image} quote={quote} />
-
-          <ButtonGroup
-            custom={custom}
-            customText={customText}
-            quote={quote}
-            handleQuoteGenerator={this.handleQuoteGenerator}
-            handleCustomChoice={this.handleCustomChoice}
-            handleSaveImage={this.handleSaveImage}
-            handleShareImage={this.handleShareImage}
-          />
-        </Generator>
-
-        <div ref={this.shareImgContainer}>
-          {shareImage && (
-            <ShareImageContainer>
-              <img src={shareImage} alt={quote} />
-            </ShareImageContainer>
-          )}
+          <div ref={this.shareImgContainer}>
+            {shareImage && (
+              <ShareImageContainer>
+                <img src={shareImage} alt={quote} />
+              </ShareImageContainer>
+            )}
+          </div>
         </div>
       </Container>
     );

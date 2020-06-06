@@ -99,6 +99,13 @@ export const GlobalStyle = createGlobalStyle`
       font-weight: 700;
       font-size: 3.75rem;
     }
+
+    button,
+    input {
+      outline: 0;
+      -webkit-appearance: none;
+      box-sizing: border-box;
+    }
     
     .mobile-only {
       ${bpm.tablet`

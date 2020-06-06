@@ -7,11 +7,11 @@ import animateScrollTo from "animated-scroll-to";
 import Text from "markov-chains-text";
 import { yogaQuotes } from "../../quotes.js";
 import { QuoteWrap, BgImage, QuoteBefore, QuoteAfter } from "./QuoteStack";
-import ButtonGroup from "./ButtonGroup";
 import QuoteClone from "./QuoteClone";
 import CustomControls from "./CustomControls";
 import { fadeIn, textFadeIn } from "../../styles/global";
 import { bp, theme } from "../../styles/theme";
+import Button from "../Button.jsx";
 
 const imageSettings = {
   width: 900,
@@ -155,15 +155,37 @@ class QuoteGenerator extends PureComponent {
 
             <QuoteClone quoteImg={this.quoteImg} image={image} quote={quote} />
 
-            <ButtonGroup
-              custom={custom}
-              customText={customText}
-              quote={quote}
-              handleQuoteGenerator={this.handleQuoteGenerator}
-              handleCustomChoice={this.handleCustomChoice}
-              handleSaveImage={this.handleSaveImage}
-              handleShareImage={this.handleShareImage}
-            />
+            <ButtonContainer>
+              {!custom && (
+                <>
+                  <Button onClick={this.handleQuoteGenerator}>
+                    Generate Quote
+                  </Button>
+                  <p>or</p>
+                </>
+              )}
+
+              <Button onClick={this.handleCustomChoice}>
+                {custom ? <span>&larr; &nbsp;</span> : ""}
+                {customText}
+              </Button>
+              <ButtonsRow>
+                <Button
+                  isSecondary
+                  disabled={quote.length < 1}
+                  onClick={this.handleSaveImage}
+                >
+                  &darr; &nbsp; Save Quote As Image
+                </Button>
+                <Button
+                  isSecondary
+                  onClick={this.handleShareImage}
+                  disabled={quote.length < 1}
+                >
+                  Create Share Image
+                </Button>
+              </ButtonsRow>
+            </ButtonContainer>
           </Generator>
 
           <div ref={this.shareImgContainer}>
@@ -281,6 +303,70 @@ const ShareImageContainer = styled.div`
 
     ${bp.desktop`
       width: 520px
+    `}
+  }
+`;
+
+const ButtonContainer = styled.div`
+  position: relative;
+  opacity: 0;
+  animation: ${fadeIn} 0.5s ease-out 0.75s forwards;
+
+  p {
+    position: relative;
+    padding: 20px 0;
+
+    ${bp.tablet`
+      padding: 0;
+    `}
+
+    &:before,
+    &:after {
+      content: "";
+      position: absolute;
+      width: calc(50% - 30px);
+      height: 2px;
+      background-color: ${theme.darkBlue};
+      top: 50%;
+      transform: translateY(-50%);
+
+      ${bp.tablet`
+        width: calc(50% - 50px);
+      `}
+    }
+
+    &:before {
+      left: 0;
+
+      ${bp.tablet`
+        left: 20px;
+      `}
+    }
+
+    &:after {
+      right: 0;
+
+      ${bp.tablet`
+        right: 20px;
+      `}
+    }
+  }
+`;
+
+const ButtonsRow = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 45px;
+
+  ${bp.tablet`
+    flex-direction: row;
+  `}
+
+  button {
+    margin: 10px 0;
+    ${bp.tablet`
+      margin: 0 10px;
     `}
   }
 `;

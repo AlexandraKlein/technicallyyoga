@@ -108,12 +108,13 @@ const Copy = styled.div`
   h1 {
     font-family: 'Anton', sans-serif;
     opacity: 0;
-    margin-top: 0;
-    margin-bottom: .5em;
+    margin-top: .25em;
+    margin-bottom: 1em;
     animation: ${fadeIn} .75s ease-out .25s forwards;
 
     ${bp.desktop`
       font-size: 7vw;
+      margin-top: 0;
       margin-bottom: .25em;
     `}
     

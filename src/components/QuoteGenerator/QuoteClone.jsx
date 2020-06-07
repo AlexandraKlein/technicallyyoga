@@ -4,27 +4,22 @@ import { bp } from "../../styles/theme";
 import { QuoteWrap, BgImage, QuoteBefore, QuoteAfter } from "./QuoteStack";
 
 const QuoteClone = ({ quote, image, quoteImg }) => (
-  <QuoteCloneContainer>
-    <QuoteCloneWrap ref={quoteImg}>
-      <BgImage src={image} />
-      <h3>
-        <QuoteBefore style={{ top: "-120px" }}>&ldquo;</QuoteBefore>
-        {quote}
-        <QuoteAfter style={{ bottom: "-240px" }}>&rdquo;</QuoteAfter>
-      </h3>
-      <p>@technicallyyoga</p>
-    </QuoteCloneWrap>
-  </QuoteCloneContainer>
+  <QuoteCloneWrap ref={quoteImg}>
+    <BgImage src={image} />
+    <h3>
+      <QuoteBefore style={{ top: "-120px" }}>&ldquo;</QuoteBefore>
+      {quote}
+      <QuoteAfter style={{ bottom: "-240px" }}>&rdquo;</QuoteAfter>
+    </h3>
+    <p>@technicallyyoga</p>
+  </QuoteCloneWrap>
 );
 
 export default QuoteClone;
 
-const QuoteCloneContainer = styled.div`
+const QuoteCloneWrap = styled(QuoteWrap)`
   display: flex;
   justify-content: center;
-`;
-
-const QuoteCloneWrap = styled(QuoteWrap)`
   position: absolute;
   top: 0;
   left: 0;

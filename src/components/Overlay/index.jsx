@@ -4,7 +4,7 @@ import { bp, theme } from "../../styles/theme";
 
 const Overlay = ({ close, isOpen }) => {
   return (
-    <Container className={isOpen ? "isOpen" : ""}>
+    <Container className={isOpen ? "open" : ""}>
       <Content>
         <Close onClick={close}>
           <span />
@@ -90,7 +90,7 @@ const Container = styled.div`
   z-index: 1;
   animation: ${slideOut} 0.2s forwards;
 
-  &.isOpen {
+  &.open {
     animation: ${slideIn} 0.2s forwards;
   }
 
@@ -164,6 +164,10 @@ const Close = styled.div`
   top: 20px;
   right: 20px;
   cursor: pointer;
+
+  &:hover {
+    opacity: 0.5;
+  }
 
   span {
     background-color: ${theme.white};

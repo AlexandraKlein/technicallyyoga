@@ -41,7 +41,7 @@ function itemSpanCSS() {
 export const GlobalStyle = createGlobalStyle`  
   @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400');
   @import url('https://fonts.googleapis.com/css?family=Sacramento');
-  @import url('https://fonts.googleapis.com/css?family=Work+Sans:300,400,500,600,700');
+  @import url('https://fonts.googleapis.com/css?family=Work+Sans:400');
   
   @font-face {
   font-family: 'Alegreya';

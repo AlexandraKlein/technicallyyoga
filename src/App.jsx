@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import "normalize.css";
 import styled from "styled-components/macro";
 import ParticlesBg from "particles-bg";
@@ -11,48 +11,41 @@ import Overlay from "./components/Overlay";
 const description =
   "Technically Yoga is the spirit front end of three who love yoga, tech, and Marina Del Rey. Click away and discover a quote that makes your horoscope jealous. A Technically Yoga generated quote is guaranteed to either awaken your soul, give cognitive unease, brighten your Darshan or bring understanding to that mildly depressed itch in the back of your head. This is where your Karma and Meta Elements link to bring you a moment of ease. Or, create your own quote and give Rumi a run for his shakti. You can save a Technically Yoga quote and share with a friend.";
 
-class App extends PureComponent {
-  state = {
-    isOpen: false,
-    mountOverlay: false,
+const App = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOverlayMounted, setIsOverlayMounted] = React.useState(false);
+
+  const handleOverlay = () => {
+    setIsOpen(!isOpen);
+
+    if (!isOverlayMounted) {
+      setIsOverlayMounted(true);
+    }
   };
 
-  handleOverlay = () => {
-    this.setState({
-      isOpen: !this.state.isOpen,
-      mountOverlay: true,
-    });
-  };
-
-  render() {
-    const { isOpen, mountOverlay } = this.state;
-
-    return (
-      <MainContainer>
-        <GlobalStyle />
-        <CopyContainer>
-          <ParticlesBg
-            bg={true}
-            color={theme.darkPurple}
-            num={100}
-            type="cobweb"
-          />
-          <Copy>
-            <h1>
-              Technically <span>Yoga</span>
-            </h1>
-            <p>{description}</p>
-            <AnimatedButton onClick={this.handleOverlay}>
-              About Us
-            </AnimatedButton>
-          </Copy>
-        </CopyContainer>
-        <QuoteGenerator />
-        {mountOverlay && <Overlay close={this.handleOverlay} isOpen={isOpen} />}
-      </MainContainer>
-    );
-  }
-}
+  return (
+    <MainContainer>
+      <GlobalStyle />
+      <CopyContainer>
+        <ParticlesBg
+          bg={true}
+          color={theme.darkPurple}
+          num={100}
+          type="cobweb"
+        />
+        <Copy>
+          <h1>
+            Technically <span>Yoga</span>
+          </h1>
+          <p>{description}</p>
+          <AnimatedButton onClick={handleOverlay}>About Us</AnimatedButton>
+        </Copy>
+      </CopyContainer>
+      <QuoteGenerator />
+      {isOverlayMounted && <Overlay close={handleOverlay} isOpen={isOpen} />}
+    </MainContainer>
+  );
+};
 
 const MainContainer = styled.main`
   position: relative;
@@ -112,16 +105,16 @@ const Copy = styled.div`
     margin-bottom: 1em;
     animation: ${fadeIn} .75s ease-out .25s forwards;
 
-    ${bp.desktop`
+    ${bp.desktop` 
       font-size: 7vw;
       margin-top: 0;
       margin-bottom: .25em;
     `}
     
      span {
-      opacity:0;
+      opacity: 0;
+      font-weight: bold;
       font-family: 'Sacramento', cursive;
-      font-weight: normal;
       display: inline-block;
       transform: translate(-10px, 10px);
       animation: ${fadeIn} .75s ease-out .5s forwards;

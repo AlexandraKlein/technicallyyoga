@@ -4,7 +4,6 @@
   "private": true,
   "dependencies": {
     "animated-scroll-to": "^1.2.2",
-    "babel-jest": "^26.0.1",
     "dom-to-image": "^2.6.0",
     "file-saver": "^2.0.1",
     "markov-chains-text": "^1.0.0",

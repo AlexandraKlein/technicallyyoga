@@ -17,14 +17,9 @@ export const textFadeIn = keyframes`
     transform: translate(-10px, 0) skew(25deg);
   }
 
-  65% {
-    opacity: 1;
-    transform: skew(0deg);
-  }
-
   100% {
     opacity: 1;
-    transform: translate(0, 0);
+    transform: translate(0, 0) skew(0deg);
   }
 `;
 

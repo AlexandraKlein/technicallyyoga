@@ -18,6 +18,7 @@ const QuoteClone = ({ quote, image, quoteImg }) => (
 );
 
 export default QuoteClone;
+
 const QuoteCloneContainer = styled.div`
   display: flex;
   justify-content: center;

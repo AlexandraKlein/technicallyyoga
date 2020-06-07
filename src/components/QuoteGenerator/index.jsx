@@ -267,8 +267,7 @@ const QuoteWrapper = styled(QuoteWrap)`
     span {
       display: inline-block;
       opacity: 0;
-      transform: translate(-10px, 0) skew(25deg);
-      animation: ${textFadeIn} 1s ease-out forwards;
+      animation: ${textFadeIn} 0.65s ease-out forwards;
     }
 
     b {

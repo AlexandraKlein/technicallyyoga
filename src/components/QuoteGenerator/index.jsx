@@ -27,7 +27,6 @@ class QuoteGenerator extends PureComponent {
 
     this.state = {
       quote: "Click below and I will generate a quote for you.",
-      numWords: null,
       image: "https://technicallyyoga.com/images/bg-image234.jpg",
       shareImage: null,
       custom: false,
@@ -111,7 +110,6 @@ class QuoteGenerator extends PureComponent {
     this.setState({ quote: "" }, () =>
       this.setState({
         quote: quoteForState.trim(),
-        numWords: trimmedQuote.split(" ").length,
       })
     );
   };
@@ -130,6 +128,10 @@ class QuoteGenerator extends PureComponent {
   render() {
     const { image, quote, custom, customText, shareImage } = this.state;
 
+    const numWords = quote.split(" ").length;
+
+    console.log({ numWords });
+
     return (
       <Container>
         <div>
@@ -147,11 +149,16 @@ class QuoteGenerator extends PureComponent {
             <QuoteContainer>
               <QuoteWrapper>
                 <BgImage src={image} />
+
                 {quote && (
                   <h3>
-                    <QuoteBefore>&ldquo;</QuoteBefore>
+                    <QuoteBefore animationDelay={`${numWords * 0.125 + 1}s`}>
+                      &ldquo;
+                    </QuoteBefore>
                     {this.wrapWords(quote)}
-                    <QuoteAfter>&rdquo;</QuoteAfter>
+                    <QuoteAfter animationDelay={`${numWords * 0.125 + 1}s`}>
+                      &rdquo;
+                    </QuoteAfter>
                   </h3>
                 )}
                 <p>@technicallyyoga</p>
@@ -169,7 +176,6 @@ class QuoteGenerator extends PureComponent {
                   <p>or</p>
                 </>
               )}
-
               <Button onClick={this.handleCustomChoice}>
                 {custom ? <span>&larr; &nbsp;</span> : ""}
                 {customText}
@@ -273,12 +279,6 @@ const QuoteWrapper = styled(QuoteWrap)`
       display: inline-block;
       opacity: 0;
       animation: ${textFadeIn} 0.65s ease-out forwards;
-    }
-
-    b {
-      opacity: 0;
-      font-size: 75px;
-      animation: ${fadeIn} 0.5s ease-out 0.25s forwards;
     }
   }
 

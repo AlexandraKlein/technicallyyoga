@@ -74,11 +74,12 @@ export const BgImage = styled.img`
 const QuoteCharacter = styled.b`
   opacity: 0;
   font-size: 75px;
-  animation: ${fadeIn} 0.5s ease-out 0.25s forwards;
+  animation: ${fadeIn} 0.5s ease-out forwards
+    ${props => props.animationDelay || "0.25s"};
 
   ${bp.tablet`
     font-size: 100px;
-  `}
+  `};
 `;
 
 export const QuoteBefore = styled(QuoteCharacter)`

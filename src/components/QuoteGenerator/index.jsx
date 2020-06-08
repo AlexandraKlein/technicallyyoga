@@ -100,9 +100,6 @@ class QuoteGenerator extends PureComponent {
   handleQuoteGenerator = () => {
     const quotes = this.state.data.map(quote => quote.text);
     const quoteText = quotes.join(" ");
-
-    console.log({ quoteText });
-
     const fakeYogaQuote = new Text(quoteText);
     const quote = fakeYogaQuote.makeSentence();
     const maxLength = 160;
@@ -143,8 +140,8 @@ class QuoteGenerator extends PureComponent {
   };
 
   render() {
-    const { image, quote, custom, customText, shareImage, data } = this.state;
-    console.log({ data });
+    const { image, quote, custom, customText, shareImage } = this.state;
+
     return (
       <Container>
         <div>

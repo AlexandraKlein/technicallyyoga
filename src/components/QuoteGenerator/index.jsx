@@ -18,6 +18,9 @@ const imageSettings = {
   height: 900,
 };
 
+const proxyurl = "https://cors-anywhere.herokuapp.com/";
+const url = "https://type.fit/api/quotes";
+
 class QuoteGenerator extends PureComponent {
   constructor(props) {
     super(props);
@@ -26,6 +29,7 @@ class QuoteGenerator extends PureComponent {
     this.generator = React.createRef();
 
     this.state = {
+      data: [],
       quote: "Click below and I will generate a quote for you.",
       numWords: null,
       image: "https://technicallyyoga.com/images/bg-image234.jpg",
@@ -33,6 +37,12 @@ class QuoteGenerator extends PureComponent {
       custom: false,
       customText: "Create Your Own",
     };
+  }
+
+  componentDidMount() {
+    fetch(proxyurl + url)
+      .then(response => response.json())
+      .then(data => this.setState({ data }));
   }
 
   handleShareImage = () => {
@@ -88,7 +98,12 @@ class QuoteGenerator extends PureComponent {
   };
 
   handleQuoteGenerator = () => {
-    const fakeYogaQuote = new Text(yogaQuotes);
+    const quotes = this.state.data.map(quote => quote.text);
+    const quoteText = quotes.join(" ");
+
+    console.log({ quoteText });
+
+    const fakeYogaQuote = new Text(quoteText);
     const quote = fakeYogaQuote.makeSentence();
     const maxLength = 160;
     const charIsOver = quote.length > maxLength;
@@ -128,8 +143,8 @@ class QuoteGenerator extends PureComponent {
   };
 
   render() {
-    const { image, quote, custom, customText, shareImage } = this.state;
-
+    const { image, quote, custom, customText, shareImage, data } = this.state;
+    console.log({ data });
     return (
       <Container>
         <div>

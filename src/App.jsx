@@ -9,7 +9,7 @@ import QuoteGenerator from "./components/QuoteGenerator";
 import Overlay from "./components/Overlay";
 
 const description =
-  "Technically Yoga is the spirit front end of three who love yoga, tech, and Marina Del Rey. Click away and discover a quote that makes your horoscope jealous. A Technically Yoga generated quote is guaranteed to either awaken your soul, give cognitive unease, brighten your Darshan or bring understanding to that mildly depressed itch in the back of your head. This is where your Karma and Meta Elements link to bring you a moment of ease. Or, create your own quote and give Rumi a run for his shakti. You can save a Technically Yoga quote and share with a friend.";
+  "Facilisi nullam vehicula ipsum a arcu cursus. Sit amet nulla facilisi morbi tempus iaculis urna id volutpat. Nulla aliquet porttitor lacus luctus accumsan tortor. Arcu ac tortor dignissim convallis aenean et tortor at. Eget sit amet tellus cras adipiscing enim eu turpis egestas. Bibendum at varius vel pharetra vel. Ut lectus arcu bibendum at varius vel pharetra vel turpis. Leo vel orci porta non. Enim ut tellus elementum sagittis. Aliquam purus sit amet luctus venenatis lectus. Elit scelerisque mauris pellentesque pulvinar pellentesque. Enim blandit volutpat maecenas volutpat. At varius vel pharetra vel turpis nunc.";
 
 const App = () => {
   const [isOpen, setIsOpen] = React.useState(false);
@@ -86,7 +86,7 @@ const Copy = styled.div`
   position: relative;
   padding: 30px 20px 45px;
   z-index: 1;
-  
+
   ${bp.desktop`
     background-color: transparent;
     top: 50%;
@@ -97,27 +97,27 @@ const Copy = styled.div`
     padding: 0 0 0 4.5%;
     text-align: left;
   `}
-  
+
   h1 {
-    font-family: 'Anton', sans-serif;
+    font-family: "Anton", sans-serif;
     opacity: 0;
-    margin-top: .25em;
+    margin-top: 0.25em;
     margin-bottom: 1em;
-    animation: ${fadeIn} .75s ease-out .25s forwards;
+    animation: ${fadeIn} 0.75s ease-out 0.25s forwards;
 
     ${bp.desktop` 
       font-size: 7vw;
       margin-top: 0;
       margin-bottom: .25em;
     `}
-    
-     span {
+
+    span {
       opacity: 0;
       font-weight: bold;
-      font-family: 'Sacramento', cursive;
+      font-family: "Sacramento", cursive;
       display: inline-block;
       transform: translate(-10px, 10px);
-      animation: ${fadeIn} .75s ease-out .5s forwards;
+      animation: ${fadeIn} 0.75s ease-out 0.5s forwards;
 
       ${bpm.tablet`
        display: block;
@@ -132,15 +132,15 @@ const Copy = styled.div`
         font-size: 9vw;
         transform: translate(-4.3vw, -0.6vw);
       `}
-     }
-   }
-    
+    }
+  }
+
   p {
-    opacity:0;
+    opacity: 0;
     font-size: 16px;
     line-height: 1.6;
-    animation: ${fadeIn} .75s ease-out .75s forwards;
-    
+    animation: ${fadeIn} 0.75s ease-out 0.75s forwards;
+
     ${bp.desktop`
       font-size: 20px;
       width: 70%;

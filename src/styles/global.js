@@ -42,45 +42,15 @@ export const GlobalStyle = createGlobalStyle`
   @import url('https://fonts.googleapis.com/css?family=Roboto+Condensed:400');
   @import url('https://fonts.googleapis.com/css?family=Sacramento');
   @import url('https://fonts.googleapis.com/css?family=Work+Sans:400');
-  
-  @font-face {
-  font-family: 'Alegreya';
-  src: url('https://technicallyyoga.com/fonts/Alegreya-Regular.woff2') format('woff2'),
-  url('https://technicallyyoga.com/fonts/Alegreya-Regular.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
+  @import url('https://fonts.googleapis.com/css2?family=Anton&display=swap');
+  @import url('https://fonts.googleapis.com/css2?family=Alegreya&display=swap');
+  @import url('https://fonts.googleapis.com/css2?&family=Anton&display=swap');
+  @import url('https://fonts.googleapis.com/css2?&family=Lily+Script+One&display=swap');
+  @import url('https://fonts.googleapis.com/css2?&family=Work+Sans&display=swap');
+
 }
 
-  @font-face {
-    font-family: 'Alegreya Bold';
-    src: url('https://technicallyyoga.com/fonts/Alegreya-Bold.woff2') format('woff2'),
-    url('https://technicallyyoga.com/fonts/Alegreya-Bold.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
-  }
-  @font-face {
-    font-family: 'Zilla';
-    src: url('https://technicallyyoga.com/fonts/ZillaSlab-SemiBold.woff2') format('woff2'),
-    url('https://technicallyyoga.com/fonts/ZillaSlab-SemiBold.woff') format('woff');
-    font-weight: 600;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'Lily Script One';
-    src: url('https://technicallyyoga.com/fonts/LilyScriptOne-Regular.woff2') format('woff2'),
-    url('https://technicallyyoga.com/fonts/LilyScriptOne-Regular.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
-  
-  @font-face {
-    font-family: 'Anton';
-    src: url('https://technicallyyoga.com/fonts/Anton.woff2') format('woff2'),
-    url('https://technicallyyoga.com/fonts/Anton.woff') format('woff');
-    font-weight: normal;
-    font-style: normal;
-  }
+
 
   body {
     ${fontStack};

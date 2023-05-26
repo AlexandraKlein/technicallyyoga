@@ -36,11 +36,13 @@ class QuoteGenerator extends PureComponent {
 
   handleShareImage = () => {
     const createImage = () => {
-      domtoimage.toJpeg(this.quoteImg.current, imageSettings).then(dataUrl => {
-        this.setState({
-          shareImage: dataUrl,
+      domtoimage
+        .toJpeg(this.quoteImg.current, imageSettings)
+        .then((dataUrl) => {
+          this.setState({
+            shareImage: dataUrl,
+          });
         });
-      });
     };
 
     createImage();
@@ -52,7 +54,7 @@ class QuoteGenerator extends PureComponent {
   };
 
   handleSaveImage = () => {
-    domtoimage.toBlob(this.quoteImg.current, imageSettings).then(blob => {
+    domtoimage.toBlob(this.quoteImg.current, imageSettings).then((blob) => {
       window.saveAs(blob, "technically-yoga-quote.png");
     });
   };
@@ -80,7 +82,7 @@ class QuoteGenerator extends PureComponent {
     });
   };
 
-  handleCreateCustomQuote = e => {
+  handleCreateCustomQuote = (e) => {
     this.setState({
       quote: e.target.value,
     });
@@ -114,7 +116,7 @@ class QuoteGenerator extends PureComponent {
     );
   };
 
-  wrapWords = str => {
+  wrapWords = (str) => {
     let words = str.split(" ");
     return words.map((val, index) => {
       return (
@@ -129,8 +131,6 @@ class QuoteGenerator extends PureComponent {
     const { image, quote, custom, customText, shareImage } = this.state;
 
     const numWords = quote.split(" ").length;
-
-    console.log({ numWords });
 
     return (
       <Container>
